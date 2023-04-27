@@ -24,6 +24,13 @@ class User(db.Model, SerializerMixin):
     user_fitness_program = db.relationship("User_fitness_program", backref="user")
     assoc = association_proxy("user_fitness_programs", "fitness_program")
 
+    @validates ('age')
+    def validate_age(self, key, age_input):
+        if age_input <17:
+            raise ValueError("Must be older than 17 to Sign up")
+        else: 
+            return age_input 
+
     @hybrid_property
     def password_hash(self):
         return self.password_hash
@@ -44,6 +51,7 @@ class User(db.Model, SerializerMixin):
 class User_fitness_program(db.Model, SerializerMixin):
     __tablename__="user_fitness_programs"
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
     user_id = db.Column( db.Integer, db.ForeignKey( 'users.id' ) )
     fitness_program_id = db.Column( db.Integer, db.ForeignKey( 'fitness_programs.id' ) )
 
@@ -51,9 +59,10 @@ class User_fitness_program(db.Model, SerializerMixin):
 class Fitness_program(db.Model, SerializerMixin):
     __tablename__='fitness_programs'
     id = db.Column(db.Integer, primary_key=True)
-    bulk = db.Column(db.String)
+    name = db.Column(db.String)
+    bulking = db.Column(db.String)
     cutting = db.Column(db.String)
-    lean_build = db.Column(db.String)
+    strong_lean_build = db.Column(db.String)
     user_fitness_program = db.relationship("User_fitness_program", backref="Fitness_program")
     assoc = association_proxy("user_fitness_programs", "user" )
 
