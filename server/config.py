@@ -7,17 +7,17 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 app.config[ 'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fit.db'
 app.config[ 'SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
+db = SQLAlchemy()
+migrate = Migrate(app, db)
+db.init_app( app )
+# app.json.compact = False
 
 # CORS(app)
-# migrate = Migrate(app, db)
+
 
 
 api = Api(app)
 
-
-
-db = SQLAlchemy()
 
 
 

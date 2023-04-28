@@ -1,5 +1,4 @@
-import NavButton from './NavButton'
-import {useState} from 'react'
+
 // import axios from 'axios';
 import React, { useState } from "react";
 
@@ -30,7 +29,7 @@ function Login([onLogin]) {
             <button type="submit">Login</button>
         </form>
 
-    }
+    )}
         
 
 
