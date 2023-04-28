@@ -4,12 +4,12 @@ import React, { useState } from "react";
 
 
 
-function Login([onLogin]) {
+function Login({}) {
     const[username, setUsername] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("http://localhost:3000/login", {
+        fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -17,7 +17,7 @@ function Login([onLogin]) {
             body:JSON.stringify({ username}),
         })
         .then(r => r.json())
-        .then((user) => onLogin(user));
+        .then((user) => console.log(user));
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -31,6 +31,17 @@ function Login([onLogin]) {
 
     )}
         
+export default Login
+
+
+
+
+
+
+
+
+
+
 
 
 
