@@ -1,34 +1,52 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
+    
 
-
-
-function Login({}) {
+function Login({user, Login}) {
     const[username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+   
+    const history = useHistory() 
 
-    function handleSubmit(e) {
+function handleSubmit(e) {
+        
         e.preventDefault();
         fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body:JSON.stringify({ username}),
+            body:JSON.stringify({ username, password}),
+    
         })
         .then(r => r.json())
-        .then((user) => console.log(user));
-    }
+        .then((user) => Login(user));
+            // Login(user);
+            console.log(user);
+        history.push('/password', password)
+    
+        .catch((error) =>{
+            console.error('Login error', error);
+        });
+}
     return (
         <form onSubmit={handleSubmit}>
+            <label>Username: </label>
             <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <label>Password: </label>
+            <input 
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Login</button>
         </form>
-
-    )}
-        
+    );
+}  
 export default Login
 
 
