@@ -32,6 +32,7 @@ def make_fitness_programs():
         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
         }
     ]
+    # fitness_programs.append(fitness_program)
     db.session.add_all(programs)
     db.session.commit()
 
@@ -61,22 +62,18 @@ def make_user():
             age = radint(17,90),
         )
         
-        users.append(user)
+    users.append(user)  
     db.session.add_all(users)
     db.session.commit()
+
 
 
 def make_user_fitness_programs():
     user_fitness_programs =[]
 
+    # user_fitness_programs.append(user_fitness_programs)
     db.session.add_all(user_fitness_programs)
     db.session.commit()
-
-
-
-
-
-
  
 
 #     User_fitness_program.query.delete()

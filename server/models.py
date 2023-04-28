@@ -5,7 +5,8 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
-from config import db, app, bcrypt
+from config import db, bcrypt
+# bcrypt
 
 
 # User, User Fitness Program, Fitness Program
@@ -24,7 +25,6 @@ class User(db.Model, SerializerMixin):
             raise ValueError("Must be older than 17 to Sign up")
         else: 
             return age_input 
-
     @hybrid_property
     def password_hash(self):
         return self.password_hash
@@ -38,7 +38,7 @@ class User(db.Model, SerializerMixin):
     def authenticate (self, password):
         return bcrypt.check_password_hash(
         self._password_hash, password.encode('utf-8'))
-    
+
 
 
 #user_id and fitness_program_id/ Foreign Key

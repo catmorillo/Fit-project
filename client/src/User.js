@@ -4,6 +4,10 @@ import {useState} from 'react';
 
 
 
+
+
+
+
 function User({id, name, handleUserDelete, handleUserPatch}){
     // Hooks
     const [userName, setUserName] = useState('')
@@ -46,4 +50,6 @@ function User({id, name, handleUserDelete, handleUserPatch}){
         }
     )
 }
+
 export default User;
+

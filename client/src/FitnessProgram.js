@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 //make fetch request for fitness programs 
 
-function Fitness_programs({id, name, bulking, cutting, strongLeanBuild, handleFitnessProgramDelete, handleFitnessProgramPatch})
+function Fitness_programs({id, name})
 
 
 

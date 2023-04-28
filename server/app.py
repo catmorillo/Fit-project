@@ -1,14 +1,57 @@
-from flask import Flask
+from flask import Flask, request, session
 # from flask_migrate import Migrate
 from flask_restful import Resource, Api
 from config import app 
-from flask import Flask, jsonify, request, session
+from flask import session
 from models import User
 #make_response, request
-
+#from flask import Flask, jsonify, request, 
 @app.route('/') 
 def root_route():
     return "hi there!\n"
+#login
+
+
+
+api = Api(app) 
+
+
+
+
+
+class CheckSession(Resource):
+
+    def get(self):
+        user = User.query.filter(User.id == session.get('user_id')).first()
+        if user:
+            return user.to_dict()
+        else:
+            return {'message': '401: Not Authorized'}, 401
+
+api.add_resource(CheckSession, '/check_session')
+
+
+
+class Login(Resource):
+    def post(self):
+        username = request.json.get('username')
+        password = request.json.get('password')
+
+        if username =='myusername' and password =='mypassword':
+            session['user_id'] = 1
+            return {'message': 'Logged in!'}, 200
+        else:
+            return {'message': "Invalid username or password"}, 401 
+api.add_resource(Login, '/login')
+
+# TO LOGOUT: (backEnd)
+class Logout(Resource):
+
+    def delete(self): 
+        session('user_id', None)
+        return {'message':' Logged out successfully!'}, 200
+
+api.add_resource(Logout, '/logout')
 
 
 
