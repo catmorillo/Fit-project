@@ -5,12 +5,13 @@ import { useHistory } from 'react-router-dom';
 function Login({user, Login}) {
     const[username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
    
-    const history = useHistory() 
 
 function handleSubmit(e) {
         
-        e.preventDefault();
+    e.preventDefault();
+    try {
         fetch("/login", {
             method: "POST",
             headers: {
@@ -20,16 +21,21 @@ function handleSubmit(e) {
     
         })
         .then(r => r.json())
-        .then((user) => Login(user));
-            // Login(user);
-            console.log(user);
+        .then((user) => {
+        Login(user);
+        // console.log(user);
         history.push('/password', password)
-    
-        .catch((error) =>{
+    })
+        .catch((error) => {
             console.error('Login error', error);
         });
+    } catch (error) {
+        console.error('Fetch error', error);
+    }
+
 }
-    return (
+
+ return (
         <form onSubmit={handleSubmit}>
             <label>Username: </label>
             <input
@@ -46,7 +52,7 @@ function handleSubmit(e) {
             <button type="submit">Login</button>
         </form>
     );
-}  
+ }  
 export default Login
 
 

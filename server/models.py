@@ -5,8 +5,8 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
-from config import db, bcrypt
-# bcrypt
+from app import db, bcrypt
+
 
 
 # User, User Fitness Program, Fitness Program

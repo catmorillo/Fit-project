@@ -1,9 +1,9 @@
 from models import db, User, User_fitness_program, Fitness_program
 from app import app 
-from faker import Faker 
+# from faker import Faker 
 from random import choice as radint 
 
-fake = Faker()
+# fake = Faker()
 
 def make_fitness_programs():
     programs = [
@@ -58,7 +58,7 @@ def make_user():
     
     for i in range(50):
         user = User(
-            name =fake.name(),
+            name :(''),
             age = radint(17,90),
         )
         
