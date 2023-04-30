@@ -2,7 +2,7 @@ import React from 'react';
 import User from './User';
 
 
-function UsersContainer({users, handleUserDelete, handleUserPatch}) {
+function UserContainer({users, handleUserDelete, handleUserPatch}) {
     const people = users.map((userObj) => {
         return <User
             key = {userObj?.id}
@@ -25,5 +25,5 @@ function UsersContainer({users, handleUserDelete, handleUserPatch}) {
     )
 }
 
-export default UsersContainer
+export default UserContainer
 

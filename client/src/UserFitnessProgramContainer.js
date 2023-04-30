@@ -1,9 +1,9 @@
 import React from 'react';
 import UserFitnessProgram from './UserFitnessProgram ';
 
-function UserFitnessProgramContainer({programs}) {
-    console.log(programs);
-    const workouts = programs.map((workoutObj) => { 
+function UserFitnessProgramContainer({userFitnessProgram}) {
+    console.log(userFitnessProgram);
+    const workouts = userFitnessProgram.map((workoutObj) => { 
         const users = workoutObj.users.map((user) => {
             return (
                 <div key={user?.id}>
@@ -11,7 +11,7 @@ function UserFitnessProgramContainer({programs}) {
                 </div>
             );
           });
-        const fitnessPrograms = workoutObj.fitnessProgram.map((fp) => {
+        const fitnessPrograms= workoutObj.fitnessProgram.map((fp) => {
             return (
                 <div key={fp.id}>
                     <p>{fp.name}</p>
