@@ -5,17 +5,17 @@ import React from "react";
 // function NavBar() {
 
 // }
-function Navbar({ onLogout }) {
-    function handleLogout() {
-      fetch("/logout", {
-        method: "DELETE",
-      }).then(() => onLogout());
-    }
+// function Navbar({ onLogout }) {
+//     function handleLogout() {
+//       fetch("/logout", {
+//         method: "DELETE",
+//       }).then(() => onLogout());
+//     }
   
-    return (
-      <header>
-        <button onClick={handleLogout}>Logout</button>
-      </header>
-    );
-  }
+//     return (
+//       <header>
+//         <button onClick={handleLogout}>Logout</button>
+//       </header>
+//     );
+//   }
 export default 'NavBar'

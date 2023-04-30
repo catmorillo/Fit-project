@@ -1,25 +1,21 @@
 from flask import Flask, request, session
-# from flask_migrate import Migrate
 from flask_restful import Resource, Api
-from config import app 
-from flask import session
-from models import User
-from flask.ext.bcrypt import BCrypt
+from flask import app, User
+from app import bcrypt
+from flask_migrate import Migrate
+# from flask.ext.bcrypt import BCrypt
 
 #make_response, request
-#from flask import Flask, jsonify, request, 
+#from flask import Flask, jsonify, request,
+
+
+
 @app.route('/') 
 def root_route():
-    return "hi there!\n"
+    return "Welcome to Fit to Flex!\n"
 
-
-
-bcrypt = Bcrypt(app)
+bcrypt = bcrypt(app)
 api = Api(app) 
-
-
-
-
 
 class CheckSession(Resource):
 
@@ -73,6 +69,3 @@ if __name__=='__main__':
 #     print(data) # do something with the data here
 #     return jsonify({"message": "Form submitted successfully"})
 
-
-# if __name__ == '__main__':
-#     app.run()

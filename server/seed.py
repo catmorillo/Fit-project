@@ -1,12 +1,12 @@
-from models import db, User, User_fitness_program, Fitness_program
-from app import app 
-# from faker import Faker 
-from random import choice as radint 
+from app import app
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from models import db, User, UserFitnessProgram, FitnessProgram
+import random
 
-# fake = Faker()
-
-def make_fitness_programs():
-    programs = [
+ufp= UserFitnessProgram
+# def make_fitness_programs():
+programs = [
         {
         "name": "Cutting",
         "description": "Lose body fat, enhance strength, and achieve your ideal body composition",
@@ -32,49 +32,58 @@ def make_fitness_programs():
         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
         }
     ]
+for fp_data in programs:
+        fp = FitnessProgram(**fp_data, user_fitness_program_id=ufp.id)
+
     # fitness_programs.append(fitness_program)
-    db.session.add_all(programs)
-    db.session.commit()
+db.session.add_all(programs)
+db.session.commit()
 
 
-def make_user():
-    users = [
-        {
-        "name":"Joe"
-        },
-         {
-        "name":"Cat"
-        },
-         {
-        "name":"Dave"
-        },
-         {
-        "name":"Beverly"
-        },
-         {
-        "name":"Jackie"
-        }
+# def make_user():
+users = [
+        {'name': "Joe", 'age': 18},
+        {'name': "Cat", 'age': 24},
+        {'name':"Dave", 'age': 32},
+        {'name':"Beverly", 'age': 22},
+        {'name':"Jackie", 'age': 52}
     ]
-    
-    for i in range(50):
-        user = User(
-            name :(''),
-            age = radint(17,90),
-        )
-        
-    users.append(user)  
-    db.session.add_all(users)
-    db.session.commit()
+for user_data in users:
+     user = User(**user_data)
+users.append(user)
+db.session.add_all(users)
+db.session.commit()
+
+for i in range(50):
+    user = User(
+        name=user.name,
+        age=random.randint(17, 90),
+    )
+
+# def make_user_fitness_programs():
+user_fitness_programs =[
+     {'name': "Joe", 'description': "Fitness Program for Joe"},
+     {'name': "Cat", 'description': "Fitness Program for Cat"},
+     {'name': "Dave", 'description': "Fitness Program for Jackie"},
+     {'name': "Beverly", 'description': "Fitness Program for Beverly"},
+     {'name':"Jackie", 'description': "Fitness Program for Jackie"}
+]
+for ufp_data in user_fitness_programs:
+     ufp = UserFitnessProgram(**ufp_data, user_id=user.id)
+
+db.session.add_all(user_fitness_programs)
+db.session.commit()
 
 
+if __name__ == '__main__':
+    with app.app_context():
+        user_fitness_programs()
+        users()
+        programs()
 
-def make_user_fitness_programs():
-    user_fitness_programs =[]
 
     # user_fitness_programs.append(user_fitness_programs)
-    db.session.add_all(user_fitness_programs)
-    db.session.commit()
- 
+
 
 #     User_fitness_program.query.delete()
 #     users = User.query.with_entities(User.id).all()
@@ -89,8 +98,3 @@ def make_user_fitness_programs():
 
 # User, User Fitness Program, Fitness Program
 
-if __name__ == '__main__':
-    with app.app_context():
-        make_user_fitness_programs()
-        make_user()     
-        make_fitness_programs()
