@@ -1,5 +1,5 @@
 import React from 'react';
-import UserFitnessProgram from './UserFitnessProgram';
+import UserFitnessProgram from './UserFitnessProgram ';
 
 function UserFitnessProgramContainer({programs}) {
     console.log(programs);

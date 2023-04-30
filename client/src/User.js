@@ -43,15 +43,10 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
               <h1>Name: {name}</h1>
               <p>Age: {age}</p>
-              <button onClick={handleClose}className="bg-black text-white active:bg-blue-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"> </button>
                    <button type="button"
                     className= "animate-pulse inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500 sm:text-sm"
                     onClick={handleDelete} 
                     > </button>
-                    <button onClick={handlePatchClose} className="bg-gray-500 text-white active:bg-gray-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button">Parley</button>
-                {isPatchVi && (
                   <div>
                     <form onSubmit={handlePatch} className="form">
                       <input
@@ -72,16 +67,13 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
                         </div>
                     </form>
                     <button onClick={handlePatch}>Provide Parley</button>
-                    <button onClick={handlePatchClose}>Back To The Brig</button>
-                  </div>
-                )}
+                  </div>              
           </div>
         </div>
       </div>
   
           );
         }
-
 
 export default User;
 

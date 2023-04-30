@@ -1,4 +1,3 @@
-// import FitnessProgramContainer from './FitnessProgramContainer'
 //import logo from './logo.svg';
 // import NavBar from './NavBar'
 // import Form from './Form'
@@ -8,14 +7,13 @@ import './stylesheets/App.css'
 import {useEffect, useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import UserContainer from './UserContainer';
-import UserFitnessProgramContainer from './UserfitnessprogramContainer';
+import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login'
 
 function App() {
   
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null);
   const [userFitnessProgram, setUserFitnessProgram] = useState([])
- 
 
 
   useEffect(() => {
@@ -48,6 +46,28 @@ function App() {
     }))
   }
   
+ 
+      
+      
+      //   useEffect(() => {
+      //     fetch("/check_session").then((response) => {
+      //       if (response.ok) {
+      //         response.json().then((user) => setUser(user));
+      //       }
+      //     });
+      //   }, []);
+      
+      //   if (user) {
+      //     return <h2>Welcome, {user.username}!</h2>;
+      //   } else {
+      //     return <Login onLogin={setUser} />;
+      //   }
+      // }
+    
+
+
+
+
   
  console.log("hello world")
 

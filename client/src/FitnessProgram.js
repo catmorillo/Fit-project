@@ -1,10 +1,26 @@
 import React from 'react';
 import {useState} from 'react';
-//make fetch request for fitness programs 
+
 
 function Fitness_programs({id, name}) {
-    
+  
+    return(
+        <div>
+            <h1> 
+                {name}
+            </h1>
+        </div>
+    )
+
+
+
+
+
 }
+
+
+export default Fitness_programs
+//make fetch request for fitness programs 
 
 
 
@@ -33,4 +49,4 @@ function Fitness_programs({id, name}) {
 //     const handlePatch = (e) => {
 //         e.preventDefault()
         
-export default Fitness_programs
+
