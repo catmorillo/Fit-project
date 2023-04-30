@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import NavButton from './NavButton'
+// import NavButton from './NavButton'
 
 export const Signup = () => {
     const [form, setForm] = useState ({})
@@ -27,7 +27,7 @@ fetch('/signup', {method:'POST', header: {}, body})
                 })
             } else {
                 r.json().then(error => {
-                    setState(error.message)
+                    useState(error.message)
                 })
             }
         })

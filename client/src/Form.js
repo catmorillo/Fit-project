@@ -18,6 +18,11 @@ function Form({addEmail, addBirthday}) {
 
     }
 }
+
+
+
+
+
 // TO LOGOUT USER
 function App() {
     const [user, setUser] = useState(null);

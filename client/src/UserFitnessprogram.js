@@ -1,3 +1,17 @@
-function Userfitnessprograms({id, name, bulking, cutting, strongLeanBuild, handleFitnessProgramDelete, handleFitnessProgramPatch})
+function UserFitnessProgram({id, name, bulking, cutting, strongLeanBuild}){
+
+
+
+    
+}
+
+
+
+export default UserFitnessProgram
+
+
+
+
+
 
 

@@ -11,7 +11,7 @@ db = SQLAlchemy()
 CORS(app)
 migrate = Migrate(app, db)
 db.init_app( app )
-api = Api(app)
+# api = Api(app)
 
 # app.json.compact = False
 

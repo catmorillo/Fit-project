@@ -1,85 +1,74 @@
-import logo from './logo.svg';
-import './stylesheets/App.css'
-import {useEffect, useState} from 'react'
-import {Route, Switch} from 'react-router-dom'
-
 // import FitnessProgramContainer from './FitnessProgramContainer'
-// import UserContainer from './UserContainer'
-// import UserFitnessProgram from './UserfitnessprogramContainer'
+//import logo from './logo.svg';
 // import NavBar from './NavBar'
-// import Home from './Form'
+// import Form from './Form'
+ // const [fitnessPrograms, setFitnessPrograms] = useState([])
+
+import './stylesheets/App.css'
+import {useEffect, useState} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import UserContainer from './UserContainer';
+import UserFitnessProgramContainer from './UserfitnessprogramContainer';
 import Login from './Login'
+
 function App() {
   
-    const [users, setUsers] = useState([])
-    const [userFitnessPrograms, setUserFitnessPrograms] = useState([])
-    const [fitnessPrograms, setFitnessPrograms] = useState([])
+  const [user, setUser] = useState([])
+  const [userFitnessProgram, setUserFitnessProgram] = useState([])
+ 
 
 
-    // useEffect(() => {
-    //   fetch('/user')
-    //   .then((r) => r.json())
-    //   // .then(setUsers)
-    // },[])
+  useEffect(() => {
+    fetch('/user')
+    .then((r) => r.json())
+    .then(setUser)
+  },[])
 
-    // useEffect(() => {
-    //   fetch('/userFitnessPrograms')
-    //   .then((r) => r.json())
-    //   // .then(setUserFitnessPrograms)
-    // }, [])
+  useEffect(() => {
+    fetch('/userFitnessProgram')
+    .then((r) => r.json())
+    .then(setUserFitnessProgram)
+  }, [])
 
-    // useEffect(() => {
-    //   fetch('/fitnessPrograms')
-    //   .then((r) => r.json())
-    // //   .then(setFitnessPrograms)
-    // },[])
-
-  //  const addUserState = (newUserObj) => {
-    
-console.log("hello world")
+  const addUserState = (newUserObj) => {
+    setUser([newUserObj, ...user])
+  }
+  const handleUserDelete = (id) => {
+    setUser(user.filter(user => {
+      return user.id ==id
+    }))
+  }
+  const handleUserPatch = (updatedUser) => {
+    setUser(user.map(user => {
+      if (user.id == updatedUser.id) {
+        return {...updatedUser};
+      } else {
+        return user
+      }
+    }))
+  }
   
+  
+ console.log("hello world")
+
 
 return (
-  <div>
-    {/* <NavBar /> */}
-    <Switch>
-      {/* <Route exact path = '/user'>
-        <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
-      </Route>
-      <Route exact path = '/userfitnessprograms'>
-        <UserfitnessprogramsContainer userfitnessprograms={userfitnessprograms} />
-      </Route>
-      <Route exact path = '/fitnessprograms'>
-        <FitnessprogramsContainer fitnessprograms={fitnessprogramcontainer}  />
-      </Route> */}
-      <Route exact path = '/login'>
-        <Login  /> 
-      </Route>
-    </Switch>
-    {/* <Header /> */}
-  </div>
+<div>
+  {}
+  <Switch>
+    <Route exact path = '/user'>
+      <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
+    </Route>
+    <Route exact path = '/userfitnessprograms'>
+      <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
+    </Route>
+    <Route exact path = '/login'>
+      <Login login={Login} /> 
+    </Route>
+  </Switch>
+  {/* <Header /> */}
+</div>
   );
 }
 
 export default App;
-
-
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <p>
-  //         Edit <code>src/App.js</code> and save to reload.
-  //       </p>
-  //       <a
-  //         className="App-link"
-  //         href="https://reactjs.org"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         Learn React
-  //       </a>
-  //     </header>
-  //   </div>
-  // );
-  // }

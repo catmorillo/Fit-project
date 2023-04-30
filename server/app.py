@@ -1,20 +1,19 @@
 from flask import Flask, request, session
 from flask_restful import Resource, Api
-from flask import app, User
-from app import bcrypt
+# from flask import User
+from app import app, User
 from flask_migrate import Migrate
 # from flask.ext.bcrypt import BCrypt
-
 #make_response, request
 #from flask import Flask, jsonify, request,
 
 
 
-@app.route('/') 
+@app.route('/Home') 
 def root_route():
     return "Welcome to Fit to Flex!\n"
 
-bcrypt = bcrypt(app)
+
 api = Api(app) 
 
 class CheckSession(Resource):
@@ -49,9 +48,6 @@ class Logout(Resource):
         return {'message':' Logged out successfully!'}, 200
 
 api.add_resource(Logout, '/logout')
-
-
-
 
 if __name__=='__main__':
     app.run(port = 5555, debug = True)

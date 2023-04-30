@@ -1,14 +1,14 @@
 import React from 'react';
-import Users from './Users';
+import User from './User';
 
 
 function UsersContainer({users, handleUserDelete, handleUserPatch}) {
     const people = users.map((userObj) => {
-        return <Users
+        return <User
             key = {userObj?.id}
             id = {userObj?.id}
             name = {userObj?.name}
-            age = {pirateObj?.age}
+            age = {userObj?.age}
             handleUserDelete = {handleUserDelete}
             handleUserPatch = {handleUserPatch}
 
