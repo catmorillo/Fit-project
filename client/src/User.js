@@ -51,22 +51,22 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
                     <form onSubmit={handlePatch} className="form">
                       <input
                         type="text"
-                        id="name"
+                        id="id"
                         name="name"
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder="Enter User Name"
                       />
                       <input
                         type="text"
-                        id="age"
-                        name="age"
+                        id="id"
+                        age="age"
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
                         placeholder="Enter User Age"
                       />
                       <div className='mb-6'>
                         </div>
                     </form>
-                    <button onClick={handlePatch}>Provide Parley</button>
+                    <button onClick={handlePatch}></button>
                   </div>              
           </div>
         </div>

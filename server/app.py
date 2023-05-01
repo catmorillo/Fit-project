@@ -35,7 +35,7 @@ class CheckSession(Resource):
 
 api.add_resource(CheckSession, '/check_session')
 
-
+# LOGIN  (BACKEND)
 class Login(Resource):
     def post(self):
         username = request.get_json()['username']
@@ -109,11 +109,6 @@ class UserById(Resource):
         return make_response({}, 204)
 api.add_resource(UserById, '/users/<int:id>')    
     
-
-            
-
-
-
 
 if __name__=='__main__':
     app.run(port = 5555, debug = True)

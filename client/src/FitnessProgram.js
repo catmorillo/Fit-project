@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 
 
-function Fitness_programs({id, name}) {
+function Fitness_programs({id, name, weeks}) {
   
     return(
         <div>

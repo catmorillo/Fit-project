@@ -4,9 +4,9 @@ from sqlalchemy.orm import sessionmaker
 from models import db, User, UserFitnessProgram, FitnessProgram
 import random
 
-ufp= UserFitnessProgram
-# def make_fitness_programs():
-programs = [
+
+def make_fitness_programs():
+    [
         {
         "name": "Cutting",
         "description": "Lose body fat, enhance strength, and achieve your ideal body composition",
@@ -32,54 +32,72 @@ programs = [
         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
         }
     ]
-for fp_data in programs:
+    for fp_data in FitnessProgram:
         fp = FitnessProgram(**fp_data, user_fitness_program_id=ufp.id)
 
-    # fitness_programs.append(fitness_program)
-db.session.add_all(programs)
+db.session.add_all(FitnessProgram)
 db.session.commit()
+ # fitness_programs.append(fitness_program)
 
 
-# def make_user():
-users = [
-        {'name': "Joe", 'age': 18},
-        {'name': "Cat", 'age': 24},
-        {'name':"Dave", 'age': 32},
-        {'name':"Beverly", 'age': 22},
-        {'name':"Jackie", 'age': 52}
+
+def make_users():
+    [
+        {'id': 1, 'name': "Joe", 'age': 18},
+        {'id': 2, 'name': "Cat", 'age': 24},
+        {'id': 3, 'name':"Dave", 'age': 32},
+        {'id': 4, 'name':"Beverly", 'age': 22},
+        {'id': 5, 'name':"Jackie", 'age': 52}
     ]
-for user_data in users:
-     user = User(**user_data)
-users.append(user)
-db.session.add_all(users)
-db.session.commit()
 
-for i in range(50):
-    user = User(
-        name=user.name,
-        age=random.randint(17, 90),
-    )
+    for user_data in User:
+        new_user = User(
+            id =user_data['id'],
+            name=user_data['name'],
+            age=user_data['age'],
+        )
+        db.session.add(new_user)
+    db.session.commit()
+    #  user = User(**user_data)
+    # user.append(user)
+    # db.session.add_all(user)
+    # db.session.commit()
+    # for i in range(50):
+    #     user = User(
+    #     name=user.name,
+    #     age=random.randint(17, 90),
+    # )
+
 
 # def make_user_fitness_programs():
-user_fitness_programs =[
+# users = [    {'name': "Joe", 'age': 18},    {'name': "Cat", 'age': 24},    {'name':"Dave", 'age': 32},    {'name':"Beverly", 'age': 22},    {'name':"Jackie", 'age': 52}]
+
+# for i, user in enumerate(users):
+#     user['id'] = i + 1
+
+
+
+
+def make_user_fitness_programs():
+    [
      {'name': "Joe", 'description': "Fitness Program for Joe"},
      {'name': "Cat", 'description': "Fitness Program for Cat"},
      {'name': "Dave", 'description': "Fitness Program for Jackie"},
      {'name': "Beverly", 'description': "Fitness Program for Beverly"},
      {'name':"Jackie", 'description': "Fitness Program for Jackie"}
 ]
-for ufp_data in user_fitness_programs:
-     ufp = UserFitnessProgram(**ufp_data, user_id=user.id)
+for ufp_data in UserFitnessProgram:
+     ufp = UserFitnessProgram(**ufp_data, user_id=User.id)
 
-db.session.add_all(user_fitness_programs)
+db.session.add_all(ufp)
 db.session.commit()
 
 
 if __name__ == '__main__':
     with app.app_context():
-        user_fitness_programs()
-        users()
-        programs()
+        make_fitness_programs()
+        make_users()
+        make_user_fitness_programs()
 
 
     # user_fitness_programs.append(user_fitness_programs)
