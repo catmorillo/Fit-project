@@ -1,28 +1,16 @@
-from flask import Flask, make_response, request, session
-from flask_restful import Resource, Api
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
 from models import User, UserFitnessProgram, FitnessProgram
-from app import app, User
-from flask_migrate import Migrate
-
-app = Flask(__name__)
-app.config[ 'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fit.db'
-app.config[ 'SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy()
-CORS(app)
-migrate = Migrate(app, db)
-db.init_app( app )
-
-#make_response, request
-#from flask import Flask, jsonify, request,
+from flask import request, session, make_response
+from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
+from config import app, db, api
+from sqlalchemy.ext.associationproxy import association_proxy
 
 @app.route('/Home') 
 def root_route():
     return "Welcome to Fit to Flex!\n"
 
 
-api = Api(app) 
+
 
 class CheckSession(Resource):
 
@@ -57,7 +45,7 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
-class User (Resource):
+class Users(Resource):
     def get(self):
         users = [u.to_dict() for u in User.query.all()]
         return make_response(
@@ -76,7 +64,7 @@ class User (Resource):
         db.session.add(new_user)
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
-    api.add_resource(User, '/users')
+api.add_resource(Users, '/users')
 
 class UserById(Resource):
     def get(self, id):

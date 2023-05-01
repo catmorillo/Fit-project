@@ -7,9 +7,10 @@ import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import UserContainer from './UserContainer';
-import FitnessProgramContainer from './FitnessProgramContainer';
+import FitnessProgramContainer from './fitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
+// import UserFitnessProgram from './userFitnessProgram';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
     fetch('/userFitnessProgram')
     .then((r) => r.json())
     .then(setUserFitnessProgram)
+    .then(console.log)
   }, []);
 
   const addUserState = (newUserObj) => {
@@ -64,13 +66,13 @@ return (
     <Route exact path = '/user'>
       <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
     </Route>
-    <Route exact path = '/userfitnessprogram'>
+    <Route exact path = '/userFitnessProgram'>
       <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
     </Route>
     <Route exact path = '/login'>
       <Login login={Login} /> 
     </Route>
-    <Route exact path = '/fitnessprogram'>
+    <Route exact path = '/fitnessProgram'>
       <FitnessProgramContainer fitnessProgram={fitnessProgram} />
     </Route>
   </Switch>

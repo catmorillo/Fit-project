@@ -41,8 +41,8 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
     <div>
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50">
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
-              <h1>Name: {name}</h1>
-              <p>Age: {age}</p>
+              {/* <p>Name: {name}</p>
+              <p>Age: {age}</p> */}
                    <button type="button"
                     className= "animate-pulse inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500 sm:text-sm"
                     onClick={handleDelete} 
@@ -54,19 +54,20 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
                         id="id"
                         name="name"
                         onChange={(e) => setUserName(e.target.value)}
-                        placeholder="Enter User Name"
+                        placeholder="Sign Up"
                       />
                       <input
                         type="text"
                         id="id"
                         age="age"
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
-                        placeholder="Enter User Age"
+                        placeholder="Enter Age"
                       />
                       <div className='mb-6'>
                         </div>
                     </form>
                     <button onClick={handlePatch}></button>
+                      
                   </div>              
           </div>
         </div>

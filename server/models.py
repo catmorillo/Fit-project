@@ -1,18 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
-from sqlalchemy.orm import validates
-from sqlalchemy.ext.associationproxy import association_proxy
-
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.hybrid import hybrid_property, db, bcrypt
-# bcrypt = bcrypt(app)
-# api = Api(app) 
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
+from config import db, bcrypt
 
-# from app import db, bcrypt
-# from flask_bcrypt import password_hash
-
-
-# User, User Fitness Program, Fitness Program
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -50,7 +41,7 @@ class User(db.Model, SerializerMixin):
 
 
 #user_id and fitness_program_id/ Foreign Key
-class User_fitness_program(db.Model, SerializerMixin):
+class UserFitnessProgram(db.Model, SerializerMixin):
     __tablename__="user_fitness_programs"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -58,7 +49,7 @@ class User_fitness_program(db.Model, SerializerMixin):
     fitness_program_id = db.Column( db.Integer, db.ForeignKey( 'fitness_programs.id' ) )
 
 
-class Fitness_program(db.Model, SerializerMixin):
+class FitnessProgram(db.Model, SerializerMixin):
     __tablename__='fitness_programs'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)

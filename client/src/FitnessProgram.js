@@ -2,15 +2,10 @@ import React from 'react';
 import {useState} from 'react';
 
 
-function Fitness_programs({id, name, weeks}) {
+function FitnessProgram({id, name, weeks}) {
   
-    return(
-        <div>
-            <h1> 
-                {name}
-            </h1>
-        </div>
-    )
+    return
+  
 
 
 
@@ -19,7 +14,11 @@ function Fitness_programs({id, name, weeks}) {
 }
 
 
-export default Fitness_programs
+export default FitnessProgram
+
+
+
+
 //make fetch request for fitness programs 
 
 
