@@ -1,53 +1,87 @@
 //import logo from './logo.svg';
 // import NavBar from './NavBar'
 // import Form from './Form'
- // const [fitnessPrograms, setFitnessPrograms] = useState([])
+ 
 
-import './stylesheets/App.css'
+import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import UserContainer from './UserContainer';
+import FitnessProgramContainer from './FitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
-import Login from './Login'
+import Login from './Login';
 
 function App() {
   
   const [user, setUser] = useState(null);
-  const [userFitnessProgram, setUserFitnessProgram] = useState([])
-
+  const [userFitnessProgram, setUserFitnessProgram] = useState([]);
+  const [fitnessProgram, setFitnessProgram] = useState([]);
 
   useEffect(() => {
     fetch('/user')
     .then((r) => r.json())
     .then(setUser)
-  },[])
+  },[]);
 
   useEffect(() => {
     fetch('/userFitnessProgram')
     .then((r) => r.json())
     .then(setUserFitnessProgram)
-  }, [])
+  }, []);
 
   const addUserState = (newUserObj) => {
-    setUser([newUserObj, ...user])
+    setUser([newUserObj, ...user]);
   }
   const handleUserDelete = (id) => {
     setUser(user.filter(user => {
-      return user.id ==id
-    }))
+      return user.id ==id;
+    }));
   }
   const handleUserPatch = (updatedUser) => {
     setUser(user.map(user => {
       if (user.id == updatedUser.id) {
         return {...updatedUser};
       } else {
-        return user
+        return user;
       }
-    }))
+    }));
   }
+
+  useEffect(() => {
+    fetch('/fitnessProgram')
+    .then((r) => r.json())
+    .then(setFitnessProgram)
+  },[]);
+
   
- 
-      
+ console.log("hello world");
+
+
+return (
+<div>
+  {}
+  <Switch>
+    <Route exact path = '/user'>
+      <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
+    </Route>
+    <Route exact path = '/userfitnessprogram'>
+      <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
+    </Route>
+    <Route exact path = '/login'>
+      <Login login={Login} /> 
+    </Route>
+    <Route exact path = '/fitnessprogram'>
+      <FitnessProgramContainer fitnessProgram={fitnessProgram} />
+    </Route>
+  </Switch>
+  {}
+</div>
+  );
+}
+
+export default App;
+
+  
       
       //   useEffect(() => {
       //     fetch("/check_session").then((response) => {
@@ -63,27 +97,3 @@ function App() {
       //     return <Login onLogin={setUser} />;
       //   }
       // }
-  
- console.log("hello world")
-
-
-return (
-<div>
-  {}
-  <Switch>
-    <Route exact path = '/user'>
-      <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
-    </Route>
-    <Route exact path = '/userfitnessprograms'>
-      <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
-    </Route>
-    <Route exact path = '/login'>
-      <Login login={Login} /> 
-    </Route>
-  </Switch>
-  {/* <Header /> */}
-</div>
-  );
-}
-
-export default App;
