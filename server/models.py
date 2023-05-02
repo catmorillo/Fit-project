@@ -13,6 +13,8 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String(120), nullable = False)
     user_fitness_programs = db.relationship("UserFitnessProgram", backref="user")
     assoc = association_proxy("user_fitness_programs", "fitness_program")
+    serialize_rules = ('userFitnessProgram.user',) 
+
 
     def __repr__(self):
         return f'User {self.username}, ID {self.id}'
@@ -42,15 +44,15 @@ class User(db.Model, SerializerMixin):
 
 #user_id and fitness_program_id/ Foreign Key
 class UserFitnessProgram(db.Model, SerializerMixin):
-    __tablename__="user_fitness_programs"
+    __tablename__="userFitnessPrograms"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     user_id = db.Column( db.Integer, db.ForeignKey( 'users.id' ) )
     fitness_program_id = db.Column( db.Integer, db.ForeignKey( 'fitness_programs.id' ) )
-
+    serialize_rules = ('fitnessPrograms') 
 
 class FitnessProgram(db.Model, SerializerMixin):
-    __tablename__='fitness_programs'
+    __tablename__='fitnessPrograms'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     bulking = db.Column(db.String)
@@ -58,6 +60,7 @@ class FitnessProgram(db.Model, SerializerMixin):
     strong_lean_build = db.Column(db.String)
     user_fitness_programs = db.relationship("UserFitnessProgram", backref="fitness_program")
     assoc = association_proxy("user_fitness_programs", "user" )
+    # serialize_rules = ('-userFitnessProgram.fitness_program', 'users')
 
 
 

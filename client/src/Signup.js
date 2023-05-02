@@ -11,7 +11,7 @@ function Signup(){
     const handleSubmit = (e) => {
         e.preventDefault();
     const formData = {username, password, email};
-        fetch('/signUp', {
+        fetch('/signUp',{
             method: 'POST',
             headers:{
                 "Content-Type": "application/json",

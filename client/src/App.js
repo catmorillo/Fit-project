@@ -32,7 +32,7 @@ function App() {
   }
   const handleUserDelete = (id) => {
     setUser(user.filter(user => {
-      return user.id ==id;
+      return user.id ===id;
     }));
   }
   const handleUserPatch = (updatedUser) => {
@@ -51,8 +51,13 @@ function App() {
     .then(setFitnessProgram)
   },[]);
   
+  // useEffect(() => {
+  //   fetch('/signUp')
+  //   .then((r) => r.json())
+  //   .then(setSignUp)
+  // },[]);
 
- console.log("hello world");
+ console.log("hello world!");
 
 
 return (

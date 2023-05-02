@@ -12,24 +12,24 @@ def root_route():
     return "Welcome to Fit to Flex!\n"
 
 
-@app.route('/signUp', methods=['POST'])
-def signup(): 
-    data = request.get_json()
-    existing_user = User.query.filter_by(username=data['username']).first()
-    if existing_user:
-        return jsonify({'message': 'Username already taken'}), 409
-    
-    new_user = User(username=data['username'], password=data['password'], email=data['email'])
-    
-    if new_user:
-        return jsonify({'message': 'User created successfully'}), 201
-    db.session.add(new_user)
-    db.session.commit()
+# @app.route('/signUp', methods=['POST'])
+class Signup(Resource):
+    def post(self): 
+        data = request.get_json()
+        # user = User.query.filter_by(username=data['username']).first()
+        new_user = request.get_json()(username=data['username'], password=data['password'], email=data['email'])
+        if new_user:
+            db.session.add(new_user)
+            db.session.commit()
+            return jsonify({'message': 'User created successfully'}), 201
+        else:
+            return new_user.to_dict(), 200
+        # jsonify({'message': 'Username does not exist'}), 409
+        
+api.add_resource(Signup, '/signUp')    
 
-api.add_resource(signup, '/signup')    
 
 class CheckSession(Resource):
-
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
         if user:
@@ -62,7 +62,7 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
-class Users(Resource):
+class User(Resource):
     def get(self):
         users = [u.to_dict() for u in User.query.all()]
         return make_response(
@@ -81,7 +81,7 @@ class Users(Resource):
         db.session.add(new_user)
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
-api.add_resource(Users, '/users')
+api.add_resource(User, '/user')
 
 class UserById(Resource):
     def get(self, id):
@@ -115,7 +115,7 @@ class UserById(Resource):
 api.add_resource(UserById, '/users/<int:id>')  
 
 app.route('/user')
-def get_user():
+def users():
     users = [
         {'id': 1, 'name': "Joe", 'age': 18},
         {'id': 2, 'name': "Cat", 'age': 24},
@@ -125,7 +125,7 @@ def get_user():
         ]
     return jsonify(users)
 @app.route('/userFitnessProgram')
-def get_user_fitness_programs():
+def UserFitnessPrograms():
     programs = [
         {'name': "Joe", 'description': "Fitness Program for Joe"},
         {'name': "Cat", 'description': "Fitness Program for Cat"},
@@ -136,7 +136,7 @@ def get_user_fitness_programs():
     return jsonify(programs)
 
 @app.route('/fitnessProgram')
-def get_fitness_programs():
+def fitnessPrograms():
     programs = [
            {
         "name": "Cutting",
