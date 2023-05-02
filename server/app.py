@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from config import app, db, api
 from sqlalchemy.ext.associationproxy import association_proxy
 
-app = Flask(__name__)
+
 
 @app.route('/Home') 
 def root_route():
@@ -18,11 +18,15 @@ def signup():
     existing_user = User.query.filter_by(username=data['username']).first()
     if existing_user:
         return jsonify({'message': 'Username already taken'}), 409
+    
     new_user = User(username=data['username'], password=data['password'], email=data['email'])
+    
+    if new_user:
+        return jsonify({'message': 'User created successfully'}), 201
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User created successfully'}), 201
+api.add_resource(signup, '/signup')    
 
 class CheckSession(Resource):
 
@@ -39,13 +43,14 @@ api.add_resource(CheckSession, '/check_session')
 class Login(Resource):
     def post(self):
         username = request.get_json()['username']
-        user = User.query.filter(User.username ==username)
+        user = User.query.filter(User.username ==username).first()
+        if not user: 
+            return {'error': 'Invalid username or password'}, 401
 
         password = request.get_json()['password']
         if user.authenticate(password):
             session['user_id'] = user.id
             return user.to_dict(), 200
-        return {'error': 'Invalid username or password'}, 401
 api.add_resource(Login, '/login')
 
 # TO LOGOUT: (backEnd)
@@ -170,8 +175,22 @@ if __name__=='__main__':
 
 
 
+# SIGN UP 
 
+# @app.route('/signUp', methods=['POST'])
+# def signup(): 
+#     data = request.get_json()
+#     existing_user = User.query.filter_by(username=data['username']).first()
+#     if not existing_user:
+#         return jsonify({'message': 'Username already taken'}), 409
+    
+#     new_user = User(username=data['username'], password=data['password'], email=data['email'])
+#     if new_user:
+#         return jsonify({'message': 'User created successfully'}), 201
+#     db.session.add(new_user)
+#     db.session.commit()
 
+# api.add_resource(signup, '/signUp')   
 
 
 

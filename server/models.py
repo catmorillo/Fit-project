@@ -11,7 +11,7 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String) 
     _password_hash = db.Column(db.String, nullable = False)
     email = db.Column(db.String(120), nullable = False)
-    user_fitness_program = db.relationship("User_fitness_program", backref="user")
+    user_fitness_programs = db.relationship("UserFitnessProgram", backref="user")
     assoc = association_proxy("user_fitness_programs", "fitness_program")
 
     def __repr__(self):
@@ -56,7 +56,7 @@ class FitnessProgram(db.Model, SerializerMixin):
     bulking = db.Column(db.String)
     cutting = db.Column(db.String)
     strong_lean_build = db.Column(db.String)
-    user_fitness_program = db.relationship("User_fitness_program", backref="Fitness_program")
+    user_fitness_programs = db.relationship("UserFitnessProgram", backref="fitness_program")
     assoc = association_proxy("user_fitness_programs", "user" )
 
 
