@@ -6,7 +6,8 @@ import random
 
 
 def make_fitness_programs():
-    [
+
+    fp_data = [ 
         {
         "name": "Cutting",
         "description": "Lose body fat, enhance strength, and achieve your ideal body composition",
@@ -33,10 +34,10 @@ def make_fitness_programs():
         }
     ]
     for fp_data in FitnessProgram:
-        fp = FitnessProgram(**fp_data, user_fitness_program_id=ufp.id)
+        fp = FitnessProgram(**fp_data)
 
-db.session.add_all(FitnessProgram)
-db.session.commit()
+        db.session.add_all(fp)
+        db.session.commit()
  # fitness_programs.append(fitness_program)
 
 
@@ -57,7 +58,7 @@ def make_users():
             age=user_data['age'],
         )
         db.session.add(new_user)
-    db.session.commit()
+        db.session.commit()
     #  user = User(**user_data)
     # user.append(user)
     # db.session.add_all(user)
@@ -79,18 +80,18 @@ def make_users():
 
 
 def make_user_fitness_programs():
-    [
-     {'name': "Joe", 'description': "Fitness Program for Joe"},
-     {'name': "Cat", 'description': "Fitness Program for Cat"},
-     {'name': "Dave", 'description': "Fitness Program for Jackie"},
-     {'name': "Beverly", 'description': "Fitness Program for Beverly"},
-     {'name':"Jackie", 'description': "Fitness Program for Jackie"}
-]
-for ufp_data in UserFitnessProgram:
-     ufp = UserFitnessProgram(**ufp_data, user_id=User.id)
+    ufp_data = [ 
+        {'name': "Joe", 'description': "Fitness Program for Joe"},
+        {'name': "Cat", 'description': "Fitness Program for Cat"},
+        {'name': "Dave", 'description': "Fitness Program for Jackie"},
+        {'name': "Beverly", 'description': "Fitness Program for Beverly"},
+        {'name':"Jackie", 'description': "Fitness Program for Jackie"}
+    ]
+    for ufp_data in UserFitnessProgram:
+        ufp = UserFitnessProgram(**ufp_data, user_id=User.id)
 
-db.session.add_all(ufp)
-db.session.commit()
+        db.session.add_all(ufp)
+        db.session.commit()
 
 
 if __name__ == '__main__':

@@ -10,6 +10,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String) 
     _password_hash = db.Column(db.String, nullable = False)
+    email = db.Column(db.String(120), nullable = False)
     user_fitness_program = db.relationship("User_fitness_program", backref="user")
     assoc = association_proxy("user_fitness_programs", "fitness_program")
 
@@ -19,7 +20,6 @@ class User(db.Model, SerializerMixin):
     @hybrid_property
     def password_hash(self):
         return self._password_hash
-    
 
     password_hash.setter
     def password_hash(self, password):

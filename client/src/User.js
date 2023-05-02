@@ -1,8 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
 
-  // Hooks
-
 
 function User({id, name, age, handleUserDelete, handleUserPatch}){
   
@@ -34,9 +32,6 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
             .then(handleUserPatch)
     }
 
-
-   
- 
    return (
     <div>
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50">
@@ -48,24 +43,24 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
                     onClick={handleDelete} 
                     > </button>
                   <div>
-                    <form onSubmit={handlePatch} className="form">
+                    {/* <form onSubmit={handlePatch} className="form">
                       <input
                         type="text"
                         id="id"
                         name="name"
                         onChange={(e) => setUserName(e.target.value)}
-                        placeholder="Sign Up"
+                        placeholder=""
                       />
                       <input
                         type="text"
                         id="id"
                         age="age"
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
-                        placeholder="Enter Age"
-                      />
+                        placeholder=""
+                      /> */}
                       <div className='mb-6'>
                         </div>
-                    </form>
+                    {/* </form> */}
                     <button onClick={handlePatch}></button>
                       
                   </div>              
@@ -74,7 +69,7 @@ function User({id, name, age, handleUserDelete, handleUserPatch}){
       </div>
   
           );
-        }
+         }
 
 export default User;
 
@@ -84,20 +79,7 @@ export default User;
 
 
  
- // Functions such as useEffect and event listeners
+// Functions such as useEffect and event listeners
 
-    // Render method (Returns JSX) */}
-
-//         {
-//             // User.map((userObj) => ( 
-//                 <div>   
-//                     <h1>{userObj.name}</h1>
-//                     <h2>{userObj.id}</h2>       
-//                 </div>
-//             ))
-//         }
-//     )
-// }
-
-//  */}
+// Render method (Returns JSX) */}
 

@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 // import NavBar from './NavBar'
 // import Form from './Form'
- 
+// import UserFitnessProgram from './userFitnessProgram';
 
 import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
@@ -10,13 +10,15 @@ import UserContainer from './UserContainer';
 import FitnessProgramContainer from './fitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
-// import UserFitnessProgram from './userFitnessProgram';
+import Signup from './Signup';
+
 
 function App() {
   
   const [user, setUser] = useState(null);
   const [userFitnessProgram, setUserFitnessProgram] = useState([]);
   const [fitnessProgram, setFitnessProgram] = useState([]);
+  const [signUp, setSignUp] = useState([]);
 
   useEffect(() => {
     fetch('/user')
@@ -24,12 +26,6 @@ function App() {
     .then(setUser)
   },[]);
 
-  useEffect(() => {
-    fetch('/userFitnessProgram')
-    .then((r) => r.json())
-    .then(setUserFitnessProgram)
-    .then(console.log)
-  }, []);
 
   const addUserState = (newUserObj) => {
     setUser([newUserObj, ...user]);
@@ -41,7 +37,7 @@ function App() {
   }
   const handleUserPatch = (updatedUser) => {
     setUser(user.map(user => {
-      if (user.id == updatedUser.id) {
+      if (user.id === updatedUser.id) {
         return {...updatedUser};
       } else {
         return user;
@@ -54,26 +50,29 @@ function App() {
     .then((r) => r.json())
     .then(setFitnessProgram)
   },[]);
-
   
+
  console.log("hello world");
 
 
 return (
 <div>
-  {}
+  
   <Switch>
-    <Route exact path = '/user'>
+    <Route exact path ='/user'>
       <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
     </Route>
-    <Route exact path = '/userFitnessProgram'>
+    <Route exact path ='/userFitnessProgram'>
       <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
     </Route>
-    <Route exact path = '/login'>
+    <Route exact path ='/login'>
       <Login login={Login} /> 
     </Route>
-    <Route exact path = '/fitnessProgram'>
+    <Route exact path ='/fitnessProgram'>
       <FitnessProgramContainer fitnessProgram={fitnessProgram} />
+    </Route>
+    <Route exact path ='/signUp'>
+      <Signup signUp={signUp} />
     </Route>
   </Switch>
   {}
