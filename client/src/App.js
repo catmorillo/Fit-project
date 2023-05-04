@@ -19,7 +19,7 @@ function App() {
   const [fitnessProgram, setFitnessProgram] = useState([]);
   const [signUp, setSignUp] = useState([]);
   const handleLogin =(username) => {
-    console.log(`User ${username} is logged i`);
+    console.log(`User ${username} is logged`);
   };
   
   useEffect(() => {
@@ -28,6 +28,7 @@ function App() {
       .then((data) => {
         setUser(data);
         console.log(data);
+       
   });
   },[]);
 

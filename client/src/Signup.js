@@ -3,25 +3,51 @@ import {useState} from 'react';
 
 
 
-function Signup(){
+function Signup({}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
     const formData = {username, password, email};
-        fetch('/signUp',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json",
+   
+function handleSubmit(e) {   
+    e.preventDefault();
+    try {
+        fetch('/signup',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
             body:JSON.stringify(formData),
         })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.log(error));
-    };
+        .then(r=>r.json())
+        .then((data) => {
+            console.log(data);
+    })
+       .catch((error) => {
+            console.error('Signup error', error);
+       });
+    } catch (error) {
+        console.error('Fetch error', error);
+    }
+}
+
+
+
+
+
+
+    // e.preventDefault();  
+    //     fetch('/signup',{
+    //         method: 'POST',
+    //         headers:{
+    //             "Content-Type": "application/json",
+    //         },
+    //         body:JSON.stringify(formData),
+    //     })
+    //     .then((response) => response.json())
+    //     .then((data) => console.log(data))
+    //     .catch((error) => console.log(error));
+    // };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -42,7 +68,7 @@ function Signup(){
                 />                   
             </label>
             <label>
-                Email:
+                Email: 
                 <input
                     type="email"
                     value={email}
