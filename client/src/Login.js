@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
     
 
-function Login({user, Login}) {
+function Login({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
@@ -21,8 +21,8 @@ function handleSubmit(e) {
     
         })
         .then(r => r.json())
-        .then((user) => {
-        Login(user);
+        .then((data) => {
+            onLogin(data.userName);
         // console.log(user);
         history.push('/password', password)
     })

@@ -14,29 +14,35 @@ import Signup from './Signup';
 
 
 function App() {
-  
   const [user, setUser] = useState(null);
   const [userFitnessProgram, setUserFitnessProgram] = useState([]);
   const [fitnessProgram, setFitnessProgram] = useState([]);
   const [signUp, setSignUp] = useState([]);
-
+  const handleLogin =(username) => {
+    console.log(`User ${username} is logged i`);
+  };
+  
   useEffect(() => {
-    fetch('/user')
-    .then((r) => r.json())
-    .then(setUser)
+    fetch('/users')
+      .then((r) => r.json())
+      .then((data) => {
+        setUser(data);
+        console.log(data);
+  });
   },[]);
-
 
   const addUserState = (newUserObj) => {
     setUser([newUserObj, ...user]);
   }
   const handleUserDelete = (id) => {
-    setUser(user.filter(user => {
-      return user.id ===id;
-    }));
+    if (user) {
+      setUser (user.filter(userObj => {
+          return userObj.id ===id;
+      }));
+    }
   }
-  const handleUserPatch = (updatedUser) => {
-    setUser(user.map(user => {
+  const handleUserPatch = (updatedUser) => {   
+    setUser (user.map(user => {
       if (user.id === updatedUser.id) {
         return {...updatedUser};
       } else {
@@ -45,11 +51,12 @@ function App() {
     }));
   }
 
-  useEffect(() => {
-    fetch('/fitnessProgram')
-    .then((r) => r.json())
-    .then(setFitnessProgram)
-  },[]);
+  // useEffect(() => {
+  //   fetch('/fitnessProgram')
+  //   .then((r) => r.json())
+  //   .then(setFitnessProgram)
+  //   .then(console.log)
+  // },[]);
   
   // useEffect(() => {
   //   fetch('/signUp')
@@ -57,32 +64,34 @@ function App() {
   //   .then(setSignUp)
   // },[]);
 
- console.log("hello world!");
 
 
-return (
-<div>
-  
-  <Switch>
-    <Route exact path ='/user'>
-      <UserContainer user={user} handleUserDelete={handleUserDelete} handleUserPatch={handleUserPatch}/>
-    </Route>
-    <Route exact path ='/userFitnessProgram'>
-      <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
-    </Route>
-    <Route exact path ='/login'>
-      <Login login={Login} /> 
-    </Route>
-    <Route exact path ='/fitnessProgram'>
-      <FitnessProgramContainer fitnessProgram={fitnessProgram} />
-    </Route>
-    <Route exact path ='/signUp'>
-      <Signup signUp={signUp} />
-    </Route>
-  </Switch>
-  {}
-</div>
-  );
+
+  return (
+  <div>
+    
+    <Switch>
+      <Route exact path ='/user'>
+        <UserContainer user={user}
+        handleUserDelete={handleUserDelete} 
+        handleUserPatch={handleUserPatch}/>
+      </Route>
+      <Route exact path ='/userFitnessProgram'>
+        <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
+      </Route>
+      <Route exact path ='/login'>
+        <Login onLogin={handleLogin} />
+      </Route>
+      <Route exact path ='/fitnessProgram'>
+        <FitnessProgramContainer fitnessProgram={fitnessProgram} />
+      </Route>
+      <Route exact path ='/signUp'>
+        <Signup signUp={signUp} />
+      </Route>
+        </Switch>
+    
+  </div>
+    );
 }
 
 export default App;
