@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
-    
+   
+
+
 
 function Login({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
-   
+
 
 function handleSubmit(e) {
 
@@ -17,15 +19,20 @@ function handleSubmit(e) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body:JSON.stringify({ username, password}),
+            body:JSON.stringify({username, password}),
     
         })
-        .then(r => r.json())
-        .then((data) => {
-            onLogin(data.userName);
-        // console.log(user);
-            history.push('/user')
+        .then(r => {
+            if (r.ok) {
+                r.json()
+                .then((data) => {
+                    onLogin(data);
+                    // console.log(data.username);
+                   
+                })
+            }
         })
+        
         .catch((error) => {
             console.error('Login error', error);
         });

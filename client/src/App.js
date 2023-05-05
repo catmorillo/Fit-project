@@ -5,7 +5,7 @@
 
 import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 import UserContainer from './UserContainer';
 import FitnessProgramContainer from './fitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
@@ -18,19 +18,33 @@ function App() {
   const [userFitnessProgram, setUserFitnessProgram] = useState([]);
   const [fitnessProgram, setFitnessProgram] = useState([]);
   const [signUp, setSignUp] = useState([]);
-  const handleLogin =(username) => {
-    console.log(`User ${username} is logged`);
-  };
+  const history = useHistory();
+ 
   
   useEffect(() => {
-    fetch('/users')
-      .then((r) => r.json())
-      .then((data) => {
+    fetch('/check_session' , )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.id) {
         setUser(data);
-        console.log(data);
-       
+      } else {
+        // history.push('/login');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
   });
-  },[]);
+}, []);
+
+
+  
+ 
+
+  const handleLogin =(user) => {
+    // console.log(`User ${user} is logged`);
+    setUser(user);
+    history.push('/user')
+  };
 
   const addUserState = (newUserObj) => {
     setUser([newUserObj, ...user]);

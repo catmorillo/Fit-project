@@ -48,7 +48,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                   <div>
                     <h1 onSubmit={handlePatch} className="form">
                       <label>Homepage</label>
-                      <h2
+                      <p
                         type="text"
                         id={`name-${id}`}
                         name="name"
@@ -56,7 +56,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder=""
                       />
-                      <h2
+                      <p
                         type="text"
                         id={`age-${id}`}
                         age="age"
@@ -67,7 +67,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                       <div className='mb-6'>
                         </div>
                     </h1>
-                    <h1 onClick={handlePatch}></h1>
+                    <h2 onClick={handlePatch}></h2>
                   </div>              
                  </div>
               </div>

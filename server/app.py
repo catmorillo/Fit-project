@@ -5,9 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from config import app, db, api
 from sqlalchemy.ext.associationproxy import association_proxy
 
-# app.config['SESSION_TYPE'] = 'filesystem'
-# app.config['SECRET_KEY'] = 'your-secret-key'
-# session(app)
+
 
 
 
@@ -31,7 +29,8 @@ class Signup(Resource):
         )
         db.session.add(new_user)
         db.session.commit()
-        return make_response(new_user.to_dict())
+        session['user_id'] = user.id
+        return make_response(new_user.to_dict(), 201)
         
 
 api.add_resource(Signup, '/signup')    
@@ -41,7 +40,7 @@ class CheckSession(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
         if user:
-            return user.to_dict()
+            return make_response(user.to_dict(), 200)
         else:
             return {'message': '401: Not Authorized'}, 401
 
@@ -58,7 +57,15 @@ class Login(Resource):
         password = request.get_json()['password']
         if user.authenticate(password):
             session['user_id'] = user.id
-            return user.to_dict(), 200
+
+            # session_token = generate_session_token()
+            # session['session_token'] = session_token
+            # response = make_response(user.to_dict(), 200)
+            # response.set_cookie('session_token', session_token)
+            # return response, 200
+
+            return make_response(user.to_dict(),  200)
+        
             # response = make_response(response)
             # response.set_cookie('username', username)
             # return response, 200
