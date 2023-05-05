@@ -1,9 +1,13 @@
 from models import User
-from flask import Flask, request, session, make_response, jsonify
+from flask import Flask, request, session, make_response, redirect
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from config import app, db, api
 from sqlalchemy.ext.associationproxy import association_proxy
+
+# app.config['SESSION_TYPE'] = 'filesystem'
+# app.config['SECRET_KEY'] = 'your-secret-key'
+# session(app)
 
 
 
@@ -18,28 +22,17 @@ class Signup(Resource):
         data = request.get_json()
         user = User.query.filter_by(username=data['username']).first()
         if user:
-            return jsonify({'error': 'Username or email already exists'}), 409
+            return make_response({'error': 'Username or email already exists'}, 422)
+            # return jsonify({'error': 'Username or email already exists'}), 409
         new_user = User(
                 username=data['username'],
-                password=data['password'],
+                password_hash=data['password'],
                 email=data['email']
         )
         db.session.add(new_user)
         db.session.commit()
-        return jsonify({'message': 'User created successfully'}), 201
-        # else:
-        #     return jsonify({'message': 'Username does not exist'}), 409
-        #  new_user.to_dict(), 200
-
-
-        # new_user =User(username=data['username'], password=data['password'], email=data['email'])
-        # db.session.add(new_user)
-        # try:
-        #     db.session.commit()
-        # except IntegrityError:
-        #     db.session.rollback()
-        #     return jsonify({'error': 'Username or email already exists'}), 409
-        # return jsonify({'message': 'User created successfully'}), 201
+        return make_response(new_user.to_dict())
+        
 
 api.add_resource(Signup, '/signup')    
 
@@ -54,7 +47,7 @@ class CheckSession(Resource):
 
 api.add_resource(CheckSession, '/check_session')
 
-# LOGIN  (BACKEND)
+# LOGIN (BACKEND)
 class Login(Resource):
     def post(self):
         username = request.get_json()['username']
@@ -66,6 +59,11 @@ class Login(Resource):
         if user.authenticate(password):
             session['user_id'] = user.id
             return user.to_dict(), 200
+            # response = make_response(response)
+            # response.set_cookie('username', username)
+            # return response, 200
+   
+     
 api.add_resource(Login, '/login')
 
 # TO LOGOUT: (backEnd)

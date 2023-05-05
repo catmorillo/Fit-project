@@ -33,12 +33,12 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(
         self._password_hash, password.encode('utf-8'))
     
-    # @validates ('age')
-    # def validate_age(self, key, age_input):
-    #     if age_input <17:
-    #         raise ValueError("Must be older than 17 to Sign up")
-    #     else: 
-    #         return age_input 
+    @validates ('age')
+    def validate_age(self, key, age_input):
+        if age_input <17:
+            raise ValueError("Must be older than 17 to Sign up")
+        else: 
+            return age_input 
 
 #user_id and fitness_program_id/ Foreign Key
 # class UserFitnessProgram(db.Model, SerializerMixin):

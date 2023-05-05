@@ -24,8 +24,8 @@ function handleSubmit(e) {
         .then((data) => {
             onLogin(data.userName);
         // console.log(user);
-        history.push('/password', password)
-    })
+            history.push('/user')
+        })
         .catch((error) => {
             console.error('Login error', error);
         });

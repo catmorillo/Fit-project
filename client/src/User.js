@@ -38,17 +38,17 @@ function User({id, name, handleUserDelete, handleUserPatch}){
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
               {/* <p>Name: {name}</p>
               <p>Age: {age}</p> */}
-                   <button 
+                   {/* <button 
                     type="button"
                     className= "animate-pulse inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500 sm:text-sm"
                     onClick={handleDelete} 
                   > 
-                    Delete 
-                  </button>
+                     
+                  </button> */}
                   <div>
-                    <form onSubmit={handlePatch} className="form">
-                      <label htmlFor={`name-${id}`}>Name:</label>
-                      <input
+                    <h1 onSubmit={handlePatch} className="form">
+                      <label>Homepage</label>
+                      <h2
                         type="text"
                         id={`name-${id}`}
                         name="name"
@@ -56,7 +56,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder=""
                       />
-                      <input
+                      <h2
                         type="text"
                         id={`age-${id}`}
                         age="age"
@@ -66,8 +66,8 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                       />
                       <div className='mb-6'>
                         </div>
-                    </form>
-                    <button onClick={handlePatch}></button>
+                    </h1>
+                    <h1 onClick={handlePatch}></h1>
                   </div>              
                  </div>
               </div>
