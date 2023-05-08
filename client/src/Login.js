@@ -14,7 +14,7 @@ function handleSubmit(e) {
 
     e.preventDefault();
     try {
-        fetch("/login",{
+        fetch('/login',{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function handleSubmit(e) {
 }
 
  return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{backgroundColor: "lightblue"}}>
             <label>Username: </label>
             <input
                 type="text"

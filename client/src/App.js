@@ -28,7 +28,7 @@ function App() {
       if (data.id) {
         setUser(data);
       } else {
-        history.push('/login');
+        // history.push('/login');
       }
     })
     .catch((error) => {
@@ -36,6 +36,12 @@ function App() {
   });
 }, []);
 
+// useEffect(() => {
+//   fetch('/signUp')
+//   .then((r) => r.json())
+//   .then(setSignUp)
+//       history.push('/userFitnessProgram')
+// },[]);
 
   
  
@@ -73,12 +79,7 @@ function App() {
   //   .then(console.log)
   // },[]);
   
-  // useEffect(() => {
-  //   fetch('/signUp')
-  //   .then((r) => r.json())
-  //   .then(setSignUp)
-  // },[]);
-
+  
 
 
 

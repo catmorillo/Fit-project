@@ -33,7 +33,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
      };
 
    return (
-    <div>
+    <div style={{backgroundColor: "lightpink"}}>
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50">
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
               {/* <p>Name: {name}</p>

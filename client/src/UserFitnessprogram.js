@@ -5,32 +5,33 @@ import {useState} from 'react';
 
 
 
-function UserFitnessProgram({id, name, bulking, cutting, strongLeanBuild}){
-   function UserFitnessProgramContainer({userFitnessProgram}) {
-      console.log(userFitnessProgram);
-      const workouts = userFitnessProgram.map((workoutObj) => { 
+// function UserFitnessProgram({id, name}){
+   function UserFitnessProgram({userFitnessPrograms}) {
+    //   console.log(userFitnessPrograms);
+      const workouts = userFitnessPrograms.map((workoutObj) => { 
           const users = workoutObj.users.map((user) => {
+            console.log(users)
               return (
                   <div key={user?.id}>
                       <p>{user?.name}</p>   
                   </div>
               );
             });
-          const fitnessPrograms= workoutObj.fitnessProgram.map((fp) => {
+            const fitnessPrograms= workoutObj.fitnessProgram.map((fp) => {
               return (
                   <div key={fp.id}>
                       <p>{fp.name}</p>
                   </div>
               );
-          });
+            });
           return (
               <UserFitnessProgram
-                key = {workoutObj.id}
-                name = {workoutObj.name}
+                key ={workoutObj.id}
+                name ={workoutObj.name}
                 users = {users}
                 fitnessPrograms = {fitnessPrograms}
               />
-      );
+            );
   
   })
   
@@ -41,7 +42,7 @@ function UserFitnessProgram({id, name, bulking, cutting, strongLeanBuild}){
       );
   }
 
-}
+
 
 
 export default UserFitnessProgram;

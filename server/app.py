@@ -22,16 +22,18 @@ class Signup(Resource):
         if user:
             return make_response({'error': 'Username or email already exists'}, 422)
             # return jsonify({'error': 'Username or email already exists'}), 409
-        new_user = User(
+        try:
+            new_user = User(
                 username=data['username'],
                 password_hash=data['password'],
                 email=data['email']
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        session['user_id'] = user.id
-        return make_response(new_user.to_dict(), 201)
-        
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            session['user_id'] = new_user.id
+            return make_response(new_user.to_dict(), 201)
+        except:
+            return make_response({'error': 'Could not create user'}, 422) 
 
 api.add_resource(Signup, '/signup')    
 
@@ -56,11 +58,14 @@ class Login(Resource):
 
         password = request.get_json()['password']
         if user.authenticate(password):
+        
             session['user_id'] = user.id
 
-        return make_response(user.to_dict(),  200)
-          
-api.add_resource(Login, '/login')
+            return make_response(user.to_dict(),  200)
+        else: 
+            return {'error': 'Invalid username or password'}, 401
+
+api.add_resource(Login,'/login')
 
 # TO LOGOUT: (backEnd)
 class Logout(Resource):
@@ -88,7 +93,7 @@ class Users(Resource):
         db.session.add(new_user)
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
-api.add_resource(Users, '/users')
+api.add_resource(Users,'/users')
 
 # class UserById(Resource):
 #     def get(self, id):
