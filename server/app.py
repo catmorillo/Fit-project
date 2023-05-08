@@ -1,5 +1,5 @@
 from models import User
-from flask import Flask, request, session, make_response, redirect
+from flask import Flask, request, session, make_response
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from config import app, db, api
@@ -38,7 +38,7 @@ api.add_resource(Signup, '/signup')
 
 class CheckSession(Resource):
     def get(self):
-        user = User.query.filter(User.id == session.get('user_id')).first()
+        user = User.query.filter(User.id ==session.get('user_id')).first()
         if user:
             return make_response(user.to_dict(), 200)
         else:
@@ -58,19 +58,8 @@ class Login(Resource):
         if user.authenticate(password):
             session['user_id'] = user.id
 
-            # session_token = generate_session_token()
-            # session['session_token'] = session_token
-            # response = make_response(user.to_dict(), 200)
-            # response.set_cookie('session_token', session_token)
-            # return response, 200
-
-            return make_response(user.to_dict(),  200)
-        
-            # response = make_response(response)
-            # response.set_cookie('username', username)
-            # return response, 200
-   
-     
+        return make_response(user.to_dict(),  200)
+          
 api.add_resource(Login, '/login')
 
 # TO LOGOUT: (backEnd)

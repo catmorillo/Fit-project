@@ -22,13 +22,13 @@ function App() {
  
   
   useEffect(() => {
-    fetch('/check_session' , )
+    fetch('/check_session')
     .then((response) => response.json())
     .then((data) => {
       if (data.id) {
         setUser(data);
       } else {
-        // history.push('/login');
+        history.push('/login');
       }
     })
     .catch((error) => {

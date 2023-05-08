@@ -14,7 +14,7 @@ function handleSubmit(e) {
 
     e.preventDefault();
     try {
-        fetch("/login", {
+        fetch("/login",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,7 +27,7 @@ function handleSubmit(e) {
                 r.json()
                 .then((data) => {
                     onLogin(data);
-                    // console.log(data.username);
+                    // console.log(data);
                    
                 })
             }

@@ -48,22 +48,22 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                   <div>
                     <h1 onSubmit={handlePatch} className="form">
                       <label>Homepage</label>
-                      <p
+                      {/* <p
                         type="text"
                         id={`name-${id}`}
                         name="name"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder=""
-                      />
-                      <p
+                      /> */}
+                      {/* <p
                         type="text"
                         id={`age-${id}`}
                         age="age"
                         value={userAge}
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
                         placeholder=""
-                      />
+                      /> */}
                       <div className='mb-6'>
                         </div>
                     </h1>
