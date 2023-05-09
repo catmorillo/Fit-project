@@ -1,8 +1,8 @@
 import React from 'react';
-import FitnessProgram from './fitnessProgram';
+// import FitnessProgram from './FitnessProgram';
 
 
-function fitnessProgramContainer(){
+function FitnessProgramContainer(){
     return(
         
         
@@ -16,9 +16,9 @@ function fitnessProgramContainer(){
             <div className="tab-item active">Strong Lean Build </div>
             <div className="tab-item">Bulking with Cat </div>
             <div className="tab-item">Cutting with Cat</div>
-            <fitnessProgramContainer
+            <div 
             id={1}
-            name ={"Cutting"}
+            name ={"cutting"}
             weeks = {12}
             />
          
@@ -31,4 +31,4 @@ function fitnessProgramContainer(){
 }
 
 
-export default fitnessProgramContainer
+export default FitnessProgramContainer

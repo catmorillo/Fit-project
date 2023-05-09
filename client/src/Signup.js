@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 
 function Signup({}){
@@ -8,7 +8,9 @@ function Signup({}){
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const formData = {username, password, email};
-   
+    const [user, setUser] = useState(null);
+    const history = useHistory();
+    
 function handleSubmit(e) {   
     e.preventDefault();
     try {
@@ -21,7 +23,9 @@ function handleSubmit(e) {
         })
         .then(r=>r.json())
         .then((data) => {
+            // update user state and navigate to new route
             console.log(data);
+            setUser(data); 
     })
        .catch((error) => {
             console.error('Signup error', error);
@@ -30,25 +34,10 @@ function handleSubmit(e) {
         console.error('Fetch error', error);
     }
 }
+    if (user !== null) {
+        history.push('/fitnessPrograms');
 
-
-
-
-
-
-    // e.preventDefault();  
-    //     fetch('/signup',{
-    //         method: 'POST',
-    //         headers:{
-    //             "Content-Type": "application/json",
-    //         },
-    //         body:JSON.stringify(formData),
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => console.log(data))
-    //     .catch((error) => console.log(error));
-    // };
-
+}
     return (
         <form onSubmit={handleSubmit}>
             <label>

@@ -36,12 +36,12 @@ function App() {
   });
 }, []);
 
-useEffect(() => {
-  fetch('/signUp')
-  .then((r) => r.json())
-  .then(setSignUp)
-      history.push('/fitnessProgram')
-},[]);
+// useEffect(() => {
+//   fetch('/signUp')
+//   .then((r) => r.json())
+//   .then(setSignUp)
+//       // history.push('/fitnessProgram')
+// },[]);
 
   
  

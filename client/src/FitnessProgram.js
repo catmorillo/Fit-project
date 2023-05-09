@@ -1,16 +1,31 @@
-import React from 'react';
-import {useState} from 'react';
-
-
-function FitnessProgram({id, name, weeks}) {
-  
-    return
-  
+import React, {useState, useEffect} from 'react';
 
 
 
+function FitnessProgram() {
+    const [fitnessProgramsList, setFitnessProgramsList] = ([]);
 
+    useEffect(() => {
+        fetch('/fitnessPrograms')
+        .then(r => r.json)
+        .then(data => setFitnessProgramsList(data));
+        
+    }, []);
 
+    return (
+        <div>
+            <h1>Fitness Programs</h1>
+            {fitnessProgramsList.map(program => (
+               <FitnessProgram
+               key={program.id}
+               id={program.id}
+               name={program.name}
+               weeks={program.weeks}
+            />
+
+            ))}
+        </div>
+    )
 }
 
 
