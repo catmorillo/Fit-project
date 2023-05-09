@@ -36,12 +36,12 @@ function App() {
   });
 }, []);
 
-// useEffect(() => {
-//   fetch('/signUp')
-//   .then((r) => r.json())
-//   .then(setSignUp)
-//       history.push('/userFitnessProgram')
-// },[]);
+useEffect(() => {
+  fetch('/signUp')
+  .then((r) => r.json())
+  .then(setSignUp)
+      history.push('/fitnessProgram')
+},[]);
 
   
  
@@ -49,7 +49,7 @@ function App() {
   const handleLogin =(user) => {
     // console.log(`User ${user} is logged`);
     setUser(user);
-    history.push('/user')
+    history.push('/userFitnessProgram')
   };
 
   const addUserState = (newUserObj) => {

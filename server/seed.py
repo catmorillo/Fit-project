@@ -5,7 +5,7 @@ from models import db, User, UserFitnessProgram, FitnessProgram
 import random
 
 
-def make_fitness_programs():
+def fitnessPrograms():
 
     fp_data = [ 
         {
@@ -33,17 +33,16 @@ def make_fitness_programs():
         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
         }
     ]
-    for fp_data in FitnessProgram:
-        fp = FitnessProgram(**fp_data)
+    for data in fp_data:
+        fp = FitnessProgram(**data)
 
-        db.session.add_all(fp)
+        db.session.add(fp)
         db.session.commit()
  # fitness_programs.append(fitness_program)
 
-
-
-def make_users():
-    [
+def users():
+    user_data = [
+    
         {'id': 1, 'name': "Joe", 'age': 18},
         {'id': 2, 'name': "Cat", 'age': 24},
         {'id': 3, 'name':"Dave", 'age': 32},
@@ -51,13 +50,13 @@ def make_users():
         {'id': 5, 'name':"Jackie", 'age': 52}
     ]
 
-    for user_data in User:
-        new_user = User(
-            id =user_data['id'],
-            name=user_data['name'],
-            age=user_data['age'],
-        )
-        db.session.add(new_user)
+    for data in user_data:
+        user = User(**data)
+        #     id =user_data['id'],
+        #     name=user_data['name'],
+        #     age=user_data['age'],
+        # )
+        db.session.add(user)
         db.session.commit()
     #  user = User(**user_data)
     # user.append(user)
@@ -79,7 +78,7 @@ def make_users():
 
 
 
-def make_user_fitness_programs():
+def userFitnessPrograms():
     ufp_data = [ 
         {'name': "Joe", 'description': "Fitness Program for Joe"},
         {'name': "Cat", 'description': "Fitness Program for Cat"},
@@ -87,18 +86,19 @@ def make_user_fitness_programs():
         {'name': "Beverly", 'description': "Fitness Program for Beverly"},
         {'name':"Jackie", 'description': "Fitness Program for Jackie"}
     ]
-    for ufp_data in UserFitnessProgram:
-        ufp = UserFitnessProgram(**ufp_data, user_id=User.id)
+    for data in ufp_data:
+        user= User.query.filter_by(name=data['name']).first()
+        ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
 
-        db.session.add_all(ufp)
+        db.session.add(ufp)
         db.session.commit()
 
 
 if __name__ == '__main__':
     with app.app_context():
-        make_fitness_programs()
-        make_users()
-        make_user_fitness_programs()
+        fitnessPrograms()
+        users()
+        userFitnessPrograms()
 
 
     # user_fitness_programs.append(user_fitness_programs)

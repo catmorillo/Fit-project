@@ -3,10 +3,9 @@ import UserFitnessProgram from './UserFitnessProgram';
 
 function UserFitnessProgramContainer({ufp_data}) {
     
-//name and description of programs 
 return (
   
-    <div>
+ <div style={{backgroundColor: "lightpink", textAlign: "center"}}>
     <h1> Your Fitness Program </h1>
     <UserFitnessProgram
    
