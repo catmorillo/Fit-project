@@ -1,4 +1,4 @@
-from models import User
+from models import User, FitnessProgram, UserFitnessProgram
 from flask import Flask, request, session, make_response
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
@@ -126,56 +126,45 @@ api.add_resource(Users,'/users')
 #         return make_response({}, 204)
 # api.add_resource(UserById, '/users/<int:id>')  
 
-# app.route('/users')
-# def users():
-#     users = [
-#         {'id': 1, 'name': "Joe", 'age': 18},
-#         {'id': 2, 'name': "Cat", 'age': 24},
-#         {'id': 3, 'name':"Dave", 'age': 32},
-#         {'id': 4, 'name':"Beverly", 'age': 22},
-#         {'id': 5, 'name':"Jackie", 'age': 52} 
-#         ]
-#     return jsonify(users)
-# @app.route('/userFitnessProgram')
-# def UserFitnessPrograms():
-#     programs = [
-#         {'name': "Joe", 'description': "Fitness Program for Joe"},
-#         {'name': "Cat", 'description': "Fitness Program for Cat"},
-#         {'name': "Dave", 'description': "Fitness Program for Jackie"},
-#         {'name': "Beverly", 'description': "Fitness Program for Beverly"},
-#         {'name':"Jackie", 'description': "Fitness Program for Jackie"}
-#     ]
-#     return jsonify(programs)
 
-# @app.route('/fitnessProgram')
-# def fitnessPrograms():
-#     programs = [
-#            {
-#         "name": "Cutting",
-#         "description": "Lose body fat, enhance strength, and achieve your ideal body composition",
-#         "duration": "12 weeks",
-#         "difficulty": "Intermediate/Advanced",
-#         "gym_frequency": "5 x per week",
-#         "training_split": "Lower Push, Upper Push, Lower Pull, Upper Pull, Full Body"
-#         },
-#         {
-#         "name": "Bulking",
-#         "description": "Gain serious lean muscle mass and greatly enhance overall strength using pregressive overload",
-#         "duration": "12 weeks",
-#         "difficulty": "Intermediate/Advanced",
-#         "gym_frequency": "5 x per week",
-#         "training_split": "Lower Push, Upper Push, Lower Pull, Upper Pull, Full Body"
-#         },
-#         {
-#         "name": "Strong Lean Build",
-#         "description": "Increase total body strength and build muscle",
-#         "duration": "12 weeks",
-#         "difficulty": "Beginner",
-#         "gym_frequency": "5 x per week",
-#         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
-#         } 
-#     ]
-#     return jsonify(programs)
+# class User_Fitness_Programs(Resource):
+#   def get(self):
+#    
+
+
+class FitnessPrograms(Resource):
+    def get(self):
+        fitness_programs = [f.to_dict() for f in FitnessProgram.query.all()] 
+        return make_response(
+            fitness_programs,
+            200  
+        ) 
+    def post(self):
+        data = request.get_json()
+        try:
+            prog = FitnessProgram (
+                name= data['name'],
+                description= data ['description'],
+                duration= data ['duration'],
+                difficulty =data ['difficulty'],
+                gym_frequency= data['gym_frequency'],
+                training_split= data ['training_split']
+            )  
+        except: 
+            return make_response({'error': '400 validation error'} ,400)
+        db.session.add(prog)
+        db.session.commit()
+        return make_response( prog.to_dict(), 201) 
+
+
+api.add_resource(FitnessPrograms,'/fitness_programs')   
+
+    # fitness_programs = FitnessProgram.query.all()
+        # fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]
+        # return fitness_programs
+    # db.session.add(fitness_program)  
+    # db.session.commit()
+
     
 
 if __name__=='__main__':

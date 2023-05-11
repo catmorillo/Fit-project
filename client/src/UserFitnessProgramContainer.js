@@ -3,14 +3,15 @@ import UserFitnessProgram from './UserFitnessProgram';
 
 function UserFitnessProgramContainer({ufp_data}) {
     
+//name and description of programs 
 return (
   
- <div style={{backgroundColor: "lightpink", textAlign: "center"}}>
-    <h1> Your Fitness Program </h1>
+    <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
+    <h1> Welcome  </h1>
     <UserFitnessProgram
    
     programs ={ufp_data}
-
+ 
 
         // name={ufp_data.name}
         // bulking={ufp_data.bulking}

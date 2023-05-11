@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: a57eb99e0221
-Revises: d4a6da17b7ef
-Create Date: 2023-05-02 10:58:05.860456
+Revision ID: f3bbabf6a036
+Revises: 
+Create Date: 2023-05-10 18:19:11.429591
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a57eb99e0221'
-down_revision = 'd4a6da17b7ef'
+revision = 'f3bbabf6a036'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -21,17 +21,21 @@ def upgrade():
     op.create_table('fitness_programs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
-    sa.Column('bulking', sa.String(), nullable=True),
-    sa.Column('cutting', sa.String(), nullable=True),
-    sa.Column('strong_lean_build', sa.String(), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
+    sa.Column('duration', sa.String(length=50), nullable=False),
+    sa.Column('difficulty', sa.String(length=50), nullable=False),
+    sa.Column('gym_frequency', sa.String(length=50), nullable=False),
+    sa.Column('training_split', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(), nullable=True),
-    sa.Column('_password_hash', sa.String(), nullable=False),
-    sa.Column('email', sa.String(length=120), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('username', sa.String(length=50), nullable=False),
+    sa.Column('_password_hash', sa.String(length=50), nullable=False),
+    sa.Column('email', sa.String(length=50), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('username')
     )
     op.create_table('user_fitness_programs',
     sa.Column('id', sa.Integer(), nullable=False),

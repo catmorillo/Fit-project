@@ -40,24 +40,9 @@ def fitnessPrograms():
         db.session.commit()
  # fitness_programs.append(fitness_program)
 
-def users():
-    user_data = [
-    
-        {'id': 1, 'name': "Joe", 'age': 18},
-        {'id': 2, 'name': "Cat", 'age': 24},
-        {'id': 3, 'name':"Dave", 'age': 32},
-        {'id': 4, 'name':"Beverly", 'age': 22},
-        {'id': 5, 'name':"Jackie", 'age': 52}
-    ]
 
-    for data in user_data:
-        user = User(**data)
-        #     id =user_data['id'],
-        #     name=user_data['name'],
-        #     age=user_data['age'],
-        # )
-        db.session.add(user)
-        db.session.commit()
+  
+  
     #  user = User(**user_data)
     # user.append(user)
     # db.session.add_all(user)
@@ -78,27 +63,26 @@ def users():
 
 
 
-def userFitnessPrograms():
-    ufp_data = [ 
-        {'name': "Joe", 'description': "Fitness Program for Joe"},
-        {'name': "Cat", 'description': "Fitness Program for Cat"},
-        {'name': "Dave", 'description': "Fitness Program for Jackie"},
-        {'name': "Beverly", 'description': "Fitness Program for Beverly"},
-        {'name':"Jackie", 'description': "Fitness Program for Jackie"}
-    ]
-    for data in ufp_data:
-        user= User.query.filter_by(name=data['name']).first()
-        ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
+# def userFitnessPrograms():
+#     ufp_data = [ 
+#         {'name': "Joe", 'description': "Fitness Program for Joe"},
+#         {'name': "Cat", 'description': "Fitness Program for Cat"},
+#         {'name': "Dave", 'description': "Fitness Program for Jackie"},
+#         {'name': "Beverly", 'description': "Fitness Program for Beverly"},
+#         {'name':"Jackie", 'description': "Fitness Program for Jackie"}
+#     ]
+#     for data in ufp_data:
+#         # user= User.query.filter_by(name=data['name']).first()
+#         # ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
 
-        db.session.add(ufp)
-        db.session.commit()
+#         db.session.add(ufp)
+#         db.session.commit()
 
 
 if __name__ == '__main__':
     with app.app_context():
         fitnessPrograms()
-        users()
-        userFitnessPrograms()
+        # userFitnessPrograms()
 
 
     # user_fitness_programs.append(user_fitness_programs)

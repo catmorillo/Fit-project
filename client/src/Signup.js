@@ -10,7 +10,7 @@ function Signup({}){
     const formData = {username, password, email};
     const [user, setUser] = useState(null);
     const history = useHistory();
-    
+
 function handleSubmit(e) {   
     e.preventDefault();
     try {
@@ -35,7 +35,7 @@ function handleSubmit(e) {
     }
 }
     if (user !== null) {
-        history.push('/fitnessPrograms');
+        history.push('/fitnessProgram');
 
 }
     return (

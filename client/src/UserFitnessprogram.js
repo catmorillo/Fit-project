@@ -16,15 +16,16 @@ function UserFitnessProgram({programs}) {
 
     return (
         <div>
-            <h1> Your Fitness Program</h1>
+            <h1> To Your Fitness Program</h1>
             <p>{userFitnessPrograms}</p>
         </div>
     );
-//     useEffect(() => {
-//         fetch('/userFitnessPrograms')
-//             .then((response) => response.json())
-//             .then((data) => setUserFitnessPrograms(data));
-//     },[]); 
+
+    // useEffect(() => {
+    //     fetch('/userFitnessPrograms')
+    //         .then((response) => response.json())
+    //         .then((data) => setUserFitnessPrograms(data));
+    // },[]); 
 
 //     return (
 //         <div>

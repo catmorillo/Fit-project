@@ -43,15 +43,16 @@ function handleSubmit(e) {
 }
 
  return (
-        <form onSubmit={handleSubmit} style={{backgroundColor: "lightblue"}}>
+        <form onSubmit={handleSubmit} >
+            
             <label>Username: </label>
-            <input
+            <input style={{backgroundColor: "lightpink"}}
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
             <label>Password: </label>
-            <input 
+            <input style={{backgroundColor: "lightpink"}}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

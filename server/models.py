@@ -55,7 +55,7 @@ class FitnessProgram(db.Model, SerializerMixin):
     __tablename__='fitness_programs'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    description = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text)
     duration = db.Column(db.String(50), nullable=False)
     difficulty = db.Column(db.String(50), nullable=False)
     gym_frequency = db.Column(db.String(50), nullable=False)

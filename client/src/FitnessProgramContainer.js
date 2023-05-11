@@ -1,8 +1,18 @@
-import React from 'react';
-// import FitnessProgram from './FitnessProgram';
+import FitnessProgram from './FitnessProgram';
+import React, {useEffect, useState} from 'react';
+
 
 
 function FitnessProgramContainer(){
+
+    const [fitnessProgramsList, setFitnessProgramsList] = useState([]);
+    console.log(fitnessProgramsList)
+    useEffect(() => {
+        fetch('/fitness_programs')
+        .then(r => r.json())
+        .then(data => setFitnessProgramsList(data));        
+    }, []);
+
     return(
         
         
@@ -17,9 +27,6 @@ function FitnessProgramContainer(){
             <div className="tab-item">Bulking with Cat </div>
             <div className="tab-item">Cutting with Cat</div>
             <div 
-            id={1}
-            name ={"cutting"}
-            weeks = {12}
             />
          
         </div>

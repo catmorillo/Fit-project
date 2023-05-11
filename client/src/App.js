@@ -7,7 +7,7 @@ import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
 import {Route, Switch, useHistory} from 'react-router-dom';
 import UserContainer from './UserContainer';
-import FitnessProgramContainer from './fitnessProgramContainer';
+import FitnessProgramContainer from './FitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
 import Signup from './Signup';
