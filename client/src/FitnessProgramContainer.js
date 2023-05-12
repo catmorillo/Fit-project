@@ -1,26 +1,23 @@
 import FitnessProgram from './FitnessProgram';
 import React, {useEffect, useState} from 'react';
 
-function FitnessProgramContainer() {
+function FitnessProgramContainer({fitnessProgram}) {
     const [fitnessProgramsList, setFitnessProgramsList] = useState([]);
-    // const fpData = ['fitnessProgramsList'];
+    
 
     useEffect(() => {
-        fetch('/fitness_program')
-        .then(r => r.json())
-        .then(data => setFitnessProgramsList(data));   
-                
-    }, []);
+    fetch('/fitness_programs')
+    .then(r => r.json())
+    .then(setFitnessProgramsList);   
+        
+}, []);
 
     const wo = fitnessProgramsList.map((program) => { 
-        return <FitnessProgram
-            key={program.id} {...program}
-            // name={programs.name}
-            // description={programs.descriptions}
-            // duration={programs.duration}
-            // diificulty={programs.dificulty}
-            // gym_frequency={programs.gym_frequency}
-            // training_split={programs.training_split}
+        return <FitnessProgram 
+            key={program.id}
+             {...program}
+                    
+           
         />
     })   
     return(
@@ -28,7 +25,7 @@ function FitnessProgramContainer() {
         <div style={{backgroundColor: "lightpink", textAlign: "center"}}>
            
             <h1> Packages for Workout Programs</h1>
-            <FitnessProgram fitnessProgramsList={fitnessProgramsList}/>
+            {/* <FitnessProgram fitnessProgramsList={fitnessProgramsList}/> */}
             <div className="tabs__wrap"></div>
             <div className="tabs"/>
             <div className="item_wrap"/>
@@ -44,6 +41,15 @@ function FitnessProgramContainer() {
     ) 
 }
 export default FitnessProgramContainer
+
+ // name={programs.name}
+            // description={programs.descriptions}
+            // duration={programs.duration}
+            // diificulty={programs.dificulty}
+            // gym_frequency={programs.gym_frequency}
+            // training_split={programs.training_split}
+
+
 
 
 

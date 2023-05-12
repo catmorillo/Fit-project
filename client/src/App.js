@@ -72,36 +72,25 @@ function App() {
     }));
   }
 
-  // useEffect(() => {
-  //   fetch('/fitnessProgram')
-  //   .then((r) => r.json())
-  //   .then(setFitnessProgram)
-  //   .then(console.log)
-  // },[]);
-  
-  
-
-
-
   return (
   <div>
     
     <Switch>
-      <Route exact path ='/user'>
+      <Route exact path='/user'>
         <UserContainer user={user}
         handleUserDelete={handleUserDelete} 
         handleUserPatch={handleUserPatch}/>
       </Route>
-      <Route exact path ='/userFitnessProgram'>
+      <Route exact path='/userFitnessProgram'>
         <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
       </Route>
-      <Route exact path ='/login'>
+      <Route exact path='/login'>
         <Login onLogin={handleLogin} />
       </Route>
-      <Route exact path ='/fitnessProgram'>
+      <Route exact path='/fitnessProgram'>
         <FitnessProgramContainer fitnessProgram={fitnessProgram} />
       </Route>
-      <Route exact path ='/signUp'>
+      <Route exact path='/signUp'>
         <Signup signUp={signUp} />
       </Route>
         </Switch>
