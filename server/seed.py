@@ -7,7 +7,7 @@ import random
 
 def fitnessPrograms():
 
-    fp_data = [ 
+    fps_data = [ 
         {
         "name": "Cutting",
         "description": "Lose body fat, enhance strength, and achieve your ideal body composition",
@@ -33,10 +33,10 @@ def fitnessPrograms():
         "training_split": "Lower Push, Upper push, Lower pull, Upper pull, Full lower"
         }
     ]
-    for data in fp_data:
-        fp = FitnessProgram(**data)
+    for data in fps_data:
+        fps = FitnessProgram(**data)
 
-        db.session.add(fp)
+        db.session.add(fps)
         db.session.commit()
  # fitness_programs.append(fitness_program)
 

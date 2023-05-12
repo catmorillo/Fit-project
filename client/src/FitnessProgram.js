@@ -2,24 +2,24 @@
 import FitnessProgramContainer from './FitnessProgramContainer';
 
 
-function FitnessProgram({fitList}) {
-    console.log(fitList)
-    const wo = fitList.map((workoutObj) => {
-        return <FitnessProgram
-            key={workoutObj.id}
-            name={workoutObj.name}
-            description={workoutObj.descriptions}
-            duration={workoutObj.duration}
-            diificulty={workoutObj.diificulty}
-            gym_frequency={workoutObj.gym_frequency}
-            training_split={workoutObj.training_split}
-        />
-    })   
+function FitnessProgram() {
+    // console.log(fps_data)
+    // const wo = fps_data.map((fp_data) => {
+    //     return <FitnessProgram
+    //         key={fp_data.id}
+    //         name={fp_data.name}
+    //         description={fp_data.descriptions}
+    //         duration={fp_data.duration}
+    //         diificulty={fp_data.diificulty}
+    //         gym_frequency={fp_data.gym_frequency}
+    //         training_split={fp_data.training_split}
+    //     />
+    // })   
     return (
         <div>
-            <h1 className='font-bold text-xl text-center'/> Get Started For the Day<span className='animate-pulse text-black-500'></span>
-            <div className='grid grid-cols-4 gap-4'>
-                {wo} 
+            <h1 className='font-bold text-xl text-center'/> click here! <span className='animate-pulse text-black-500'></span>
+            <h2 className='grid grid-cols-4 gap-4' > Get Started </h2>  
+            <div className="tab-item"> 
             </div>    
         </div>
     )
@@ -28,25 +28,59 @@ function FitnessProgram({fitList}) {
 export default FitnessProgram;
 
 
-//    const [fitnessPrograms, setFitnessPrograms] = useState([]);
 
-//    useEffect(() => {
-//     fetch('/fitness_programs')
-//         .then(response => response.json())
-//         .then(data => setFitnessPrograms(data))
-//         .catch(error => console.error('Error fetching fitness programs:', error));
-//     }, []);
-//     return (
-//         <div>
-//            <h1>Fitness Program</h1>
-//             <ul>
-//                 {fitnessPrograms.map((item, index) => (
-//                     <li key={index}>{fitnessPrograms}</li>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -55,9 +89,6 @@ export default FitnessProgram;
 
 
 //make fetch request for fitness programs 
-
-
-
 
 //     const [fitnessProgramName, setFitnessProgramName] = useState('');
 //     const [fitnessProgramBulking, setFitnessProgramBulking] = useState('');
