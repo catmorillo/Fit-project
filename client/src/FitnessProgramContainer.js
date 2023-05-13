@@ -5,6 +5,8 @@ function FitnessProgramContainer({fitnessProgram}) {
     const [fitnessProgramsList, setFitnessProgramsList] = useState([]);
     
 
+
+
     useEffect(() => {
     fetch('/fitness_programs')
     .then(r => r.json())
@@ -12,7 +14,7 @@ function FitnessProgramContainer({fitnessProgram}) {
         
 }, []);
 
-    const wo = fitnessProgramsList.map((program) => { 
+    const WO = fitnessProgramsList.map((program) => { 
         return <FitnessProgram 
             key={program.id}
              {...program}
@@ -29,26 +31,27 @@ function FitnessProgramContainer({fitnessProgram}) {
             <div className="tabs__wrap"></div>
             <div className="tabs"/>
             <div className="item_wrap"/>
-                {wo}
-            <div className="tab-item active">Strong Lean Build </div>
-            <div className="tab-item">Bulking with Cat </div>
-            <div className="tab-item">Cutting with Cat</div>
+                {WO}
                  
             <div 
             />
          
-        </div>
-    ) 
+        </div> 
+    )
 }
+
+
+
+
+
+
+    
+
 export default FitnessProgramContainer
 
- // name={programs.name}
-            // description={programs.descriptions}
-            // duration={programs.duration}
-            // diificulty={programs.dificulty}
-            // gym_frequency={programs.gym_frequency}
-            // training_split={programs.training_split}
 
+
+ 
 
 
 
