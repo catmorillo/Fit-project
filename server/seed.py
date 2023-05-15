@@ -2,10 +2,10 @@ from app import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import db, User, UserFitnessProgram, FitnessProgram
-import random
 
 
-def fitnessPrograms():
+
+def fitnessProgram():
 
     fps_data = [ 
         {
@@ -40,8 +40,6 @@ def fitnessPrograms():
         db.session.commit()
  # fitness_programs.append(fitness_program)
 
-
-  
   
     #  user = User(**user_data)
     # user.append(user)
@@ -53,35 +51,48 @@ def fitnessPrograms():
     #     age=random.randint(17, 90),
     # )
 
-
 # def make_user_fitness_programs():
 # users = [    {'name': "Joe", 'age': 18},    {'name': "Cat", 'age': 24},    {'name':"Dave", 'age': 32},    {'name':"Beverly", 'age': 22},    {'name':"Jackie", 'age': 52}]
 
 # for i, user in enumerate(users):
 #     user['id'] = i + 1
 
+def userFitnessProgram():
 
+    userFitnessProgram.query.delete()
+    
 
+    ufp_data = [ 
+        {
+        'name': "Joe",
+        'description': "Fitness Program for Joe"
+        },
+        {"name": "Cat", 
+        'description': "Fitness Program for Cat"
+        },
+        {
+        "name": "Dave",
+        "description": "Fitness Program for Jackie"
+        },
+        {"name": "Beverly",
+        'description': "Fitness Program for Beverly"
+        },
+        {"name":"Jackie",
+        "description": "Fitness Program for Jackie"
+        }
+    ]
+    for data in ufp_data:
+        ufp = userFitnessProgram(**data)
+        # user= User.query.filter_by(name=data['name']).first()
+        # ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
 
-# def userFitnessPrograms():
-#     ufp_data = [ 
-#         {'name': "Joe", 'description': "Fitness Program for Joe"},
-#         {'name': "Cat", 'description': "Fitness Program for Cat"},
-#         {'name': "Dave", 'description': "Fitness Program for Jackie"},
-#         {'name': "Beverly", 'description': "Fitness Program for Beverly"},
-#         {'name':"Jackie", 'description': "Fitness Program for Jackie"}
-#     ]
-#     for data in ufp_data:
-#         # user= User.query.filter_by(name=data['name']).first()
-#         # ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
-
-#         db.session.add(ufp)
-#         db.session.commit()
+        db.session.add(ufp)
+        db.session.commit()
 
 
 if __name__ == '__main__':
     with app.app_context():
-        fitnessPrograms()
+        fitnessProgram()
         # userFitnessPrograms()
 
 
