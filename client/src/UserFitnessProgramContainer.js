@@ -4,16 +4,18 @@ import UserFitnessProgram from './UserFitnessProgram';
 function UserFitnessProgramContainer({userFitnessProgram}) {
     const [userFitnessProgramsList, setUserFitnessProgramsList] = useState([]);
 
-     useEffect(() => { 
-    fetch('/userFitnessPrograms')
-    .then((response) => response.json())
+    useEffect(() => { 
+    fetch('/user_fitness_programs')
+    .then(r => r.json())
     .then(setUserFitnessProgramsList);
 },[]); 
 
     const workout = userFitnessProgramsList.map((userGuide) => {
         return <UserFitnessProgram
             key={userGuide.id}
-             {...userGuide}
+            name={userGuide.name}
+            description={userGuide.description}
+           
         />
     })
     return (
@@ -21,9 +23,10 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
         <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
             
             <h1>Welcome </h1>
-            <h1> To Your Personalized Fitness Program</h1>
-                {workout}
-            <UserFitnessProgram
+            <h1> To Your Fitness Program</h1>
+            {workout}
+            <UserFitnessProgram 
+          
         />
         </div>
     )

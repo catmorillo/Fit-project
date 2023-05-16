@@ -6,14 +6,9 @@ from config import app, db, api
 from sqlalchemy.ext.associationproxy import association_proxy
 
 
-
-
-
 @app.route('/Home') 
 def root_route():
     return "Welcome to Fit to Flex!\n"
-
-
 
 class Signup(Resource):
     def post(self): 
@@ -48,7 +43,6 @@ class CheckSession(Resource):
 
 api.add_resource(CheckSession, '/check_session')
 
-# LOGIN (BACKEND)
 class Login(Resource):
     def post(self):
         username = request.get_json()['username']
@@ -67,7 +61,6 @@ class Login(Resource):
 
 api.add_resource(Login,'/login')
 
-# TO LOGOUT: (backEnd)
 class Logout(Resource):
 
     def delete(self): 
@@ -95,13 +88,17 @@ class Users(Resource):
         return make_response(new_user.to_dict(), 201)
 api.add_resource(Users,'/users')
 
-# class UserById(Resource):
-#     def get(self, id):
-#         user = User.query.filter_by(id = id).first()
-#         if not user:
-#             return make_response({'error': 'User not found'},404)
-#         else:
-#             return make_response(user.to_dict(), 200)
+class UserById(Resource):
+    def delete(self,id):
+        user = User.query.filter_by(id = id).first()
+        if not user:
+            return make_response({'error': '404 user not found'}, 404)
+        else:
+            db.session.delete(user)
+            db.session.commit()
+        return make_response({}, 204)
+
+api.add_resource(UserById,'/users/<int:user_id>')
     
 #     def patch(self, id):
 #         data = request.get_json()
@@ -115,22 +112,6 @@ api.add_resource(Users,'/users')
 #         db.session.add(user)
 #         db.session.commit()
 #         return make_response(user.to_dict(), 202)
-    
-#     def delete(self, id):
-#         user =User.query.filter_by(id = id).first()
-#         if not user:
-#             return make_response({'error': 'User not found'}, 404)
-#         else:
-#             db.session.delete(users)
-#             db.session.commit()
-#         return make_response({}, 204)
-# api.add_resource(UserById, '/users/<int:id>')  
-
-
-# class User_Fitness_Programs(Resource):
-#   def get(self):
-#    
-
 
 class FitnessPrograms(Resource):
     def get(self):
@@ -146,7 +127,7 @@ class FitnessPrograms(Resource):
                 name= data['name'],
                 description= data ['description'],
                 duration= data ['duration'],
-                difficulty =data ['difficulty'],
+                difficulty= data ['difficulty'],
                 gym_frequency= data['gym_frequency'],
                 training_split= data ['training_split']
             )  
@@ -158,6 +139,28 @@ class FitnessPrograms(Resource):
 
 
 api.add_resource(FitnessPrograms,'/fitness_programs')   
+
+
+class UserFitnessPrograms(Resource):
+    def get(self):
+        userFitnessPrograms = [u.to_dict() for u in UserFitnessProgram.query.all()]
+        return make_response(
+                userFitnessPrograms,
+                200
+            )
+    # def post(self):
+    #     data = request.get_json()
+    #     try:
+    #         userWo = UserFitnessProgram(
+    #         name= data['name'],
+    #         description= data['description']
+    #         )
+    #     except:
+    #         return make_response({'error': '400 validation error'}, 400)
+    #     db.session.add(userWo)
+    #     db.session.commit()
+    #     return make_response(userWo.to_dict(), 201)
+api.add_resource(UserFitnessPrograms, '/userFitnessPrograms')
 
     # fitness_programs = FitnessProgram.query.all()
         # fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]
@@ -172,31 +175,7 @@ if __name__=='__main__':
 
 
 
-
-
-
-
-# SIGN UP 
-
-# @app.route('/signUp', methods=['POST'])
-# def signup(): 
-#     data = request.get_json()
-#     existing_user = User.query.filter_by(username=data['username']).first()
-#     if not existing_user:
-#         return jsonify({'message': 'Username already taken'}), 409
-    
-#     new_user = User(username=data['username'], password=data['password'], email=data['email'])
-#     if new_user:
-#         return jsonify({'message': 'User created successfully'}), 201
-#     db.session.add(new_user)
-#     db.session.commit()
-
-# api.add_resource(signup, '/signUp')   
-
-
-
-
-## PART OF THE FORM ##
+## FORM ##
 # @app.route("http://localhost:3000", methods=["POST"])
 # def form(User):
 #     data = request.get_json()
