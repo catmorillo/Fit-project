@@ -66,19 +66,24 @@ def userFitnessProgram():
         {
         'name': "Joe",
         'description': "Fitness Program for Joe"
+        'age': 44
         },
         {"name": "Cat", 
         'description': "Fitness Program for Cat"
+        'age': 18
         },
         {
         "name": "Dave",
         "description": "Fitness Program for Jackie"
+        "age": 22
         },
         {"name": "Beverly",
         'description': "Fitness Program for Beverly"
+        'age': 21
         },
         {"name":"Jackie",
         "description": "Fitness Program for Jackie"
+        "age": "43"
         }
     ]
     for data in ufp_data:

@@ -21,13 +21,10 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
     return (
   
         <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
-            
             <h1>Welcome </h1>
             <h1> To Your Fitness Program</h1>
             {workout}
-            <UserFitnessProgram 
-          
-        />
+            <UserFitnessProgram/>
         </div>
     )
 }

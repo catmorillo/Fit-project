@@ -16,6 +16,7 @@ function UserFitnessProgram({name, description}) {
             <div>
                 <h2> Program:{name}</h2>
                 <h2> Plan:{description} </h2>
+                
                
             </div>
             )}

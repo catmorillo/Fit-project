@@ -22,13 +22,6 @@ function FitnessProgramContainer({fitnessProgram}) {
            
             <h1> Packages for Exercise Programs</h1>
                 {WO}
-            {/* <div className="tabs__wrap"></div> */}
-            {/* <div className="tabs"/>
-              {WO}  */}
-            {/* <div className="item_wrap"/> */}
-                               
-            {/* <div  */}
-            {/* />          */}
         </div> 
     )
 }

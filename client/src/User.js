@@ -6,8 +6,8 @@ function User({id, name, handleUserDelete, handleUserPatch}){
   
     const [userName, setUserName] = useState('');
     const [userAge, setUserAge] = useState('');
-
-
+    
+   
 
     const handleDelete = (e) => {
         handleUserDelete(id);
@@ -33,57 +33,46 @@ function User({id, name, handleUserDelete, handleUserPatch}){
      };
 
    return (
+   
     <div style={{backgroundColor: "lightpink"}}>
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50">
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
-            <userContainer 
-              user={{
-                id: id,
-                name:name
-              }}
-              handleUSerDelete={handleUserDelete}
-              handleUserPatch={handleUserPatch}
-              />
-              {/* <p>Name: {name}</p>
-              <p>Age: {age}</p> */}
-                   {/* <button 
-                    type="button"
-                    className= "animate-pulse inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500 sm:text-sm"
-                    onClick={handleDelete} 
-                  > 
-                     
-                  </button> */}
-                  <div>
-                    
-                    <h1 onSubmit={handlePatch} className="form">
-                      <label>Homepage</label>
-                      {/* <p
+          
+              <form onSubmit={handlePatch} className="form">
+                      Username:
+                      <input
                         type="text"
-                        id={`name-${id}`}
+                        id="name"
                         name="name"
-                        value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        placeholder=""
-                      /> */}
-                      {/* <p
+                        placeholder="Insert name"
+                      />
+                      Age:
+                      <input
                         type="text"
-                        id={`age-${id}`}
-                        age="age"
-                        value={userAge}
+                        id="age"
+                        name="age"
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
-                        placeholder=""
-                      /> */}
-                      <div className='mb-6'>
-                        </div>
-                    </h1>
-                    <h2 onClick={handlePatch}></h2>
-                  </div>              
-                 </div>
-              </div>
-             </div>
+                        placeholder=" Insert Age"
+                      />   
+            
+            <button type="button" onClick={handleDelete}>
+              Delete
+           
+            {/* <button onClick={handlePatch}></button> */}
+            
+            </button>
+            </form>
+    </div>
+    </div>
+    </div>
+
+   );
+            }       
+                
   
-          );
-          }
+          
+          
 
 export default User;
 

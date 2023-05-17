@@ -71,7 +71,7 @@ api.add_resource(Logout, '/logout')
 
 class Users(Resource):
     def get(self):
-        users = [u.to_dict() for u in User.query.all()]
+        users = [u.to_dict() for u in session.query(User).all()]
         return make_response(users, 200)
     
     def post (self):
@@ -86,21 +86,25 @@ class Users(Resource):
         db.session.add(new_user)
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
+    # def patch(self): 
+
 api.add_resource(Users,'/users')
 
 class UserById(Resource):
-    def delete(self,id):
-        user = User.query.filter_by(id = id).first()
+    def delete(self, user_id):
+        user = User.query(User).filter_by(id=user_id).first()
         if not user:
             return make_response({'error': '404 user not found'}, 404)
         else:
             db.session.delete(user)
             db.session.commit()
-        return make_response({}, 204)
+            return make_response({}, 204)
+    
+        
 
 api.add_resource(UserById,'/users/<int:user_id>')
     
-#     def patch(self, id):
+#    def patch(self, id):
 #         data = request.get_json()
 #         user = User.query.fitler_by(id = id).first()
 #         try:
@@ -160,7 +164,7 @@ class UserFitnessPrograms(Resource):
     #     db.session.add(userWo)
     #     db.session.commit()
     #     return make_response(userWo.to_dict(), 201)
-api.add_resource(UserFitnessPrograms, '/userFitnessPrograms')
+api.add_resource(UserFitnessPrograms,'/user_fitness_programs')
 
     # fitness_programs = FitnessProgram.query.all()
         # fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]

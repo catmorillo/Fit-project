@@ -78,8 +78,8 @@ function App() {
     <Switch>
       <Route exact path='/user'>
         <UserContainer user={user}
-        handleUserDelete={handleUserDelete} 
-        handleUserPatch={handleUserPatch}/>
+        handleUserDelete={handleUserDelete}/>
+        {/* handleUserPatch={handleUserPatch}/> */}
       </Route>
       <Route exact path='/userFitnessProgram'>
         <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
