@@ -39,12 +39,16 @@ function handleSubmit(e) {
     } catch (error) {
         console.error('Fetch error', error);
     }
+}
+function handleLogout() {
+    localStorage.removeItem('accessToken');
 
+    history.push('/login');
 }
 
  return (
+    <div>
         <form onSubmit={handleSubmit} >
-            
             <label>Username: </label>
             <input style={{backgroundColor: "lightpink"}}
                 type="text"
@@ -59,9 +63,11 @@ function handleSubmit(e) {
             />
             <button type="submit">Login</button>
         </form>
+        <button onClick={handleLogout}>Logout</button>       
+    </div>
     );
  }  
-export default Login
+export default Login;
 
 
 

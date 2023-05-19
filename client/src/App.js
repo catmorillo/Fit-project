@@ -57,8 +57,8 @@ function App() {
   }
   const handleUserDelete = (id) => {
     if (user) {
-      setUser (user.filter(userObj => {
-          return userObj.id ===id;
+      setUser (user.filter(user_id => {
+          return user_id.id ===id;
       }));
     }
   }
