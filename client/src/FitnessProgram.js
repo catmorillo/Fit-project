@@ -18,6 +18,7 @@ function FitnessProgram({name, description, duration, difficulty, gym_frequency,
             <h2 className='grid grid-cols-4 gap-4' ></h2> 
             <div className="item_wrap"/> */}
             {/* <div className="tab-item"/>  */}
+                
                 <h2>Program : {name} </h2>
                 {isVisible && (
             <div>

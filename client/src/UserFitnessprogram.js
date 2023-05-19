@@ -6,22 +6,20 @@ function UserFitnessProgram({name, description}) {
     // const [userFitnessPrograms, setUserFitnessPrograms] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
     const handleButton =() => {
-    setIsVisible(!isVisible);
+    setIsVisible(isVisible);
 };
 
     return (
-        <div>            
-            {/* <p>{userFitnessPrograms}</p> */}
-            {isVisible && (
-            <div>
+        <div>                    
                 <h2> Program:{name}</h2>
-                <h2> Plan:{description} </h2>
-                
-               
+                {isVisible && (
+                              
+            <div>
+                <h2>Plan: {description} </h2>
             </div>
             )}
             <button onClick={handleButton}className="button button--primary">
-            Click To View 
+            Click
             </button>
         </div> 
     );

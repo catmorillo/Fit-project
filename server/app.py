@@ -92,7 +92,7 @@ api.add_resource(Users,'/users')
 
 class UserById(Resource):
     def delete(self, user_id):
-        user = User.query(User).filter_by(id=user_id).first()
+        user = User.query.filter_by(id=user_id).first()
         if not user:
             return make_response({'error': '404 user not found'}, 404)
         else:
@@ -152,18 +152,18 @@ class UserFitnessPrograms(Resource):
                 userFitnessPrograms,
                 200
             )
-    # def post(self):
-    #     data = request.get_json()
-    #     try:
-    #         userWo = UserFitnessProgram(
-    #         name= data['name'],
-    #         description= data['description']
-    #         )
-    #     except:
-    #         return make_response({'error': '400 validation error'}, 400)
-    #     db.session.add(userWo)
-    #     db.session.commit()
-    #     return make_response(userWo.to_dict(), 201)
+    def post(self):
+        data = request.get_json()
+        try:
+            userWo = UserFitnessProgram(
+            name= data['name'],
+            description= data['description']
+            )
+        except:
+            return make_response({'error': '400 validation error'}, 400)
+        db.session.add(userWo)
+        db.session.commit()
+        return make_response(userWo.to_dict(), 201)
 api.add_resource(UserFitnessPrograms,'/user_fitness_programs')
 
     # fitness_programs = FitnessProgram.query.all()

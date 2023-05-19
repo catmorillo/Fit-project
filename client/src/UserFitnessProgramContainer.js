@@ -13,8 +13,9 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
     const workout = userFitnessProgramsList.map((userGuide) => {
         return <UserFitnessProgram
             key={userGuide.id}
-            name={userGuide.name}
-            description={userGuide.description}
+            {...userGuide}
+            // name={userGuide.name}
+            // description={userGuide.description}
            
         />
     })
@@ -23,7 +24,7 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
         <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
             <h1>Welcome </h1>
             <h1> To Your Fitness Program</h1>
-            {workout}
+            {workout} 
             <UserFitnessProgram/>
         </div>
     )

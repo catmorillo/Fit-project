@@ -11,7 +11,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
 
     const handleDelete = (e) => {
         handleUserDelete(id);
-        fetch(`/user/${id}`, {
+        fetch(`/users/${id}`, {
             method: "DELETE"
         })
     }
@@ -23,7 +23,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
             age: userAge,  
         };
 
-        fetch(`/user/${id}`, {
+        fetch(`/users/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newUserObj)
@@ -63,12 +63,12 @@ function User({id, name, handleUserDelete, handleUserPatch}){
             
             </button>
             </form>
-    </div>
-    </div>
+        </div>
+      </div>
     </div>
 
    );
-            }       
+}       
                 
   
           
