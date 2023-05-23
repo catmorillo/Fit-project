@@ -45,8 +45,6 @@ class User(db.Model, SerializerMixin):
 class UserFitnessProgram(db.Model, SerializerMixin):
     __tablename__="user_fitness_programs"
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.Text)
-    name = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey( 'users.id' ) )
     fitness_program_id = db.Column( db.Integer, db.ForeignKey("fitness_programs.id"))
     serialize_rules = ('-fitness_program',) 

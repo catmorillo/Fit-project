@@ -12,8 +12,7 @@ function UserFitnessProgram({name, description}) {
     return (
         <div>                    
                 <h2> Program:{name}</h2>
-                {isVisible && (
-                              
+                {isVisible && (                              
             <div>
                 <h2>Plan: {description} </h2>
             </div>

@@ -6,7 +6,7 @@ from models import db, User, UserFitnessProgram, FitnessProgram
 
 
 def fitnessProgram():
-
+    FitnessProgram.query.delete()
     fps_data = [ 
         {
         "name": "Cutting",
@@ -57,42 +57,41 @@ def fitnessProgram():
 # for i, user in enumerate(users):
 #     user['id'] = i + 1
 
-def userFitnessProgram():
+# def userFitnessProgram():
 
-    userFitnessProgram.query.delete()
+#     userFitnessProgram.query.delete()
     
 
-    ufp_data = [ 
-        {
-        'name': "Joe",
-        'description': "Fitness Program for Joe"
-        'age': 44
-        },
-        {"name": "Cat", 
-        'description': "Fitness Program for Cat"
-        'age': 18
-        },
-        {
-        "name": "Dave",
-        "description": "Fitness Program for Jackie"
-        "age": 22
-        },
-        {"name": "Beverly",
-        'description': "Fitness Program for Beverly"
-        'age': 21
-        },
-        {"name":"Jackie",
-        "description": "Fitness Program for Jackie"
-        "age": "43"
-        }
-    ]
-    for data in ufp_data:
-        ufp = userFitnessProgram(**data)
-        # user= User.query.filter_by(name=data['name']).first()
-        # ufp = UserFitnessProgram(name=data['name'], description=data['description'], user_id=User.id)
+#     ufp_data = [ 
+#         {
+#         'name': "Joe",
+#         'description': "Fitness Program for Joe"
+#         'age': 44
+#         },
+#         {"name": "Cat", 
+#         'description': "Fitness Program for Cat"
+#         'age': 18
+#         },
+#         {
+#         "name": "Dave",
+#         "description": "Fitness Program for Jackie"
+#         "age": 22
+#         },
+#         {"name": "Beverly",
+#         'description': "Fitness Program for Beverly"
+#         'age': 21
+#         },
+#         {"name":"Jackie",
+#         "description": "Fitness Program for Jackie"
+#         "age": "43"
+#         }
+#     ]
+#     for data in ufp_data:
+#         ufp = userFitnessProgram(**data)
+     
 
-        db.session.add(ufp)
-        db.session.commit()
+#         db.session.add(ufp)
+#         db.session.commit()
 
 
 if __name__ == '__main__':

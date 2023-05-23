@@ -35,7 +35,7 @@ function handleSubmit(e) {
     }
 }
     if (user !== null) {
-        history.push('/fitnessProgram');
+        history.push('/login');
 
 }
     return (

@@ -43,7 +43,7 @@ function handleSubmit(e) {
 function handleLogout() {
     localStorage.removeItem('accessToken');
 
-    history.push('/login');
+    // history.push('/login');
 }
 
  return (
