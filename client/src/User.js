@@ -57,7 +57,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                       />   
             
             <button type="button" onClick={handleDelete}>
-              Delete
+              Delete User
            
             {/* <button onClick={handlePatch}></button> */}
             

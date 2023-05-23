@@ -156,8 +156,7 @@ class UserFitnessPrograms(Resource):
         data = request.get_json()
         try:
             userWo = UserFitnessProgram(
-            name= data['name'],
-            description= data['description']
+            user_id= data['user_id']
             )
         except:
             return make_response({'error': '400 validation error'}, 400)

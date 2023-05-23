@@ -18,38 +18,39 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
         />
     });
 
-function handleCreateUserFitnessProgram() {
-    const newFitnessProgram = {
-        name: 'Fitness Program',
-        description: 'Program description',
-    };
-
-    fetch('/user_fitness_programs', {
-    method:'POST',
-    headers: {
-            'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newFitnessProgram),
-    })
-        .then((r) => {
-            if (r.ok) {
-                return r.json();
-            } else {
-              throw new Error('Failed to create fitness program');
-            }
-        })
-        .then((createdProgram) => {
-            setUserFitnessProgramsList([...userFitnessProgramsList, createdProgram]);
-        });
-    }
+// function handleCreateUserFitnessProgram() {
+//     const newFitnessProgram = {
+//         user_id: 'user_id',
+//         fitness_program_id: 'fitness_program_id',
+//     };
+   
+//     fetch('/user_fitness_programs', {
+//     method:'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(newFitnessProgram),
+//     })
+//         .then((r) => {
+//             if (r.ok) {
+//                 return r.json();
+//             } else 
+//             {
+//                 throw new Error('Failed to create fitness program');
+//             }
+//         })
+//         .then((createdProgram) => {
+//             setUserFitnessProgramsList([...userFitnessProgramsList, createdProgram]);
+//         });
+//     }
 
     return (
         <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
             <h1>Welcome </h1>
             <h1> To Your Fitness Program</h1>
-            {workout} 
-            <button onClick={handleCreateUserFitnessProgram}> Create New Program</button>
+            {workout}         
         </div>
+         
     );
 }
 

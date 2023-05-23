@@ -11,6 +11,7 @@ import FitnessProgramContainer from './FitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
 import Signup from './Signup';
+// import Logout from './Logout';
 
 
 function App() {
@@ -42,10 +43,21 @@ function App() {
 //   .then(setSignUp)
 //       // history.push('/fitnessProgram')
 // },[]);
-
+  const handleLogout = () => {
+    localStorage.clear();
+    fetch('/logout', {
+      method:'POST'
+    })
+      .then((response) => response.json())
+      .then((data) => {
+      })
+      .catch((error) => {
+        console.error(error);
+      }); 
+    setUser(null);
+    history.push('/login');
+  };
   
- 
-
   const handleLogin =(user) => {
     // console.log(`User ${user} is logged`);
     setUser(user);
@@ -82,20 +94,24 @@ function App() {
         {/* handleUserPatch={handleUserPatch}/> */}
       </Route>
       <Route exact path='/userFitnessProgram'>
-        <UserFitnessProgramContainer userFitnessProgram={userFitnessProgram} />
+        <UserFitnessProgramContainer 
+        userFitnessProgram={userFitnessProgram}
+        setUserFitnessProgram={setUserFitnessProgram} />
       </Route>
-      <Route exact path='/login'>
+      <Route exact path='/login'/>
         <Login onLogin={handleLogin} />
-      </Route>
+      {/* <Route exact path='/logout'>
+        <Logout onLogout={handleLogout} />
+      </Route> */}
       <Route exact path='/fitnessProgram'>
         <FitnessProgramContainer fitnessProgram={fitnessProgram} />
       </Route>
       <Route exact path='/signUp'>
         <Signup signUp={signUp} />
-      </Route>
-        </Switch>
-    
-  </div>
+       </Route>
+      </Switch>
+      {/* {user && <button onClick={handleLogout}>Logout</button>}     */}
+    </div>
     );
 }
 

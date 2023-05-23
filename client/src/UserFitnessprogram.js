@@ -1,26 +1,25 @@
 import React from 'react';
 import { useState} from 'react';
 
-// function UserFitnessProgram({id, name}){
-function UserFitnessProgram({name, description}) {
-    // const [userFitnessPrograms, setUserFitnessPrograms] = useState([]);
+
+function UserFitnessProgram({fitness_programs}) {
     const [isVisible, setIsVisible] = useState(false);
     const handleButton =() => {
     setIsVisible(isVisible);
 };
-
     return (
-        <div>                    
-                <h2> Program:{name}</h2>
+        <div>                     
+                <h2> Fitness Program: {fitness_programs} </h2>
                 {isVisible && (                              
             <div>
-                <h2>Plan: {description} </h2>
+                {/* <h2>Plan: {description} </h2> */}
             </div>
             )}
             <button onClick={handleButton}className="button button--primary">
             Click
-            </button>
+            </button>    
         </div> 
+        
     );
 }
 

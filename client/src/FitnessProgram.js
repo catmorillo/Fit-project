@@ -10,15 +10,41 @@ function FitnessProgram({name, description, duration, difficulty, gym_frequency,
     const handleButton =() => {
         setIsVisible(!isVisible);
     };
+    const [userFitnessProgramsList, setUserFitnessProgramsList] = useState([]);
+// function handleLogout() {
+//     localStorage.removeItem('accessToken');
+//         // history.push('/login');
+//     }
 
+
+function handleCreateUserFitnessProgram() {
+    const newFitnessProgram = {
+        user_id: 'user_id',
+        fitness_program_id: 'fitness_program_id',
+    };
+   
+    fetch('/user_fitness_programs', {
+    method:'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newFitnessProgram),
+    })
+        .then((r) => {
+            if (r.ok) {
+                return r.json();
+            } else 
+            {
+                throw new Error('Failed to create fitness program');
+            }
+        })
+        .then((createdProgram) => {
+            setUserFitnessProgramsList([...userFitnessProgramsList, createdProgram]);
+        });
+    }
 
     return(
         <div>
-            {/* <h1 className='font-bold text-xl text-center'><span className='animate-pulse text-black-500'></span> </h1>
-            <h2 className='grid grid-cols-4 gap-4' ></h2> 
-            <div className="item_wrap"/> */}
-            {/* <div className="tab-item"/>  */}
-                
                 <h2>Program : {name} </h2>
                 {isVisible && (
             <div>
@@ -32,11 +58,15 @@ function FitnessProgram({name, description, duration, difficulty, gym_frequency,
                 <button onClick={handleButton}className="button button--primary">
                  Click here
                 </button>
-        </div>    
-        
+                <button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
+         +
+        </button>              
+
+
+                {/* <button onClick={handleLogout}>Logout</button>     */}
+        </div>            
     );
 }
-
 export default FitnessProgram;
 
 
