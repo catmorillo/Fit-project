@@ -4,23 +4,18 @@ import React, {useState} from 'react';
 
     
 
-function FitnessProgram({name, description, duration, difficulty, gym_frequency, training_split}){
+function FitnessProgram({id, name, description, duration, difficulty, gym_frequency, training_split}){
 
     const [isVisible, setIsVisible] = useState(false);
     const handleButton =() => {
         setIsVisible(!isVisible);
     };
     const [userFitnessProgramsList, setUserFitnessProgramsList] = useState([]);
-// function handleLogout() {
-//     localStorage.removeItem('accessToken');
-//         // history.push('/login');
-//     }
 
 
 function handleCreateUserFitnessProgram() {
     const newFitnessProgram = {
-        user_id: 'user_id',
-        fitness_program_id: 'fitness_program_id',
+        fitness_program_id: id,
     };
    
     fetch('/user_fitness_programs', {
@@ -61,63 +56,10 @@ function handleCreateUserFitnessProgram() {
                 <button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
          +
         </button>              
-
-
-                {/* <button onClick={handleLogout}>Logout</button>     */}
         </div>            
     );
 }
 export default FitnessProgram;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

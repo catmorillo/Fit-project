@@ -2,14 +2,14 @@ import React from 'react';
 import { useState} from 'react';
 
 
-function UserFitnessProgram({fitness_programs}) {
+function UserFitnessProgram({fitness_program}) {
     const [isVisible, setIsVisible] = useState(false);
     const handleButton =() => {
     setIsVisible(isVisible);
 };
     return (
         <div>                     
-                <h2> Fitness Program: {fitness_programs} </h2>
+                <h2> Fitness Program: {fitness_program?.name} </h2>
                 {isVisible && (                              
             <div>
                 {/* <h2>Plan: {description} </h2> */}

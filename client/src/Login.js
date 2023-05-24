@@ -40,11 +40,7 @@ function handleSubmit(e) {
         console.error('Fetch error', error);
     }
 }
-function handleLogout() {
-    localStorage.removeItem('accessToken');
 
-    // history.push('/login');
-}
 
  return (
     <div>
@@ -62,8 +58,7 @@ function handleLogout() {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Login</button>
-        </form>
-        <button onClick={handleLogout}>Logout</button>       
+        </form>           
     </div>
     );
  }  

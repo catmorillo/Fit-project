@@ -1,5 +1,5 @@
 //import logo from './logo.svg';
-// import NavBar from './NavBar'
+import NavBar from './NavBar'
 // import Form from './Form'
 // import UserFitnessProgram from './userFitnessProgram';
 
@@ -43,6 +43,8 @@ function App() {
 //   .then(setSignUp)
 //       // history.push('/fitnessProgram')
 // },[]);
+
+
   const handleLogout = () => {
     localStorage.clear();
     fetch('/logout', {
@@ -59,7 +61,7 @@ function App() {
   };
   
   const handleLogin =(user) => {
-    // console.log(`User ${user} is logged`);
+    console.log(`User ${user} is logged`);
     setUser(user);
     history.push('/userFitnessProgram')
   };
@@ -86,7 +88,7 @@ function App() {
 
   return (
   <div>
-    
+    <NavBar/> 
     <Switch>
       <Route exact path='/user'>
         <UserContainer user={user}
@@ -98,11 +100,9 @@ function App() {
         userFitnessProgram={userFitnessProgram}
         setUserFitnessProgram={setUserFitnessProgram} />
       </Route>
-      <Route exact path='/login'/>
+      <Route exact path='/login'>
         <Login onLogin={handleLogin} />
-      {/* <Route exact path='/logout'>
-        <Logout onLogout={handleLogout} />
-      </Route> */}
+      </Route>
       <Route exact path='/fitnessProgram'>
         <FitnessProgramContainer fitnessProgram={fitnessProgram} />
       </Route>

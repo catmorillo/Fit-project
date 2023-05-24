@@ -43,9 +43,6 @@ function FitnessProgramContainer({fitnessProgram}) {
 //             });
 //         }    
     
-
-    
-    
     return(
                 
         <div style={{backgroundColor: "lightpink", textAlign: "center"}}>           
@@ -54,8 +51,7 @@ function FitnessProgramContainer({fitnessProgram}) {
                 {/* <button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
                 +
                </button>  */}
-        </div> 
-               
+        </div>                
     )
 }
 export default FitnessProgramContainer

@@ -47,7 +47,7 @@ class UserFitnessProgram(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey( 'users.id' ) )
     fitness_program_id = db.Column( db.Integer, db.ForeignKey("fitness_programs.id"))
-    serialize_rules = ('-fitness_program',) 
+    serialize_rules = ('-user.user_fitness_programs', '-finess_program.user_fitness_programs',)
 
     user = db.relationship('User', backref=db.backref('user_fitness_programs', lazy=True))
     fitness_program = db.relationship('FitnessProgram', backref=db.backref('user_fitness_programs', lazy=True))
@@ -64,7 +64,7 @@ class FitnessProgram(db.Model, SerializerMixin):
 
     # user_fitness_programs = db.relationship("UserFitnessProgram", backref="fitness_program")
     # assoc = association_proxy("user_fitness_programs", "user" )
-    # serialize_rules = ('-userFitnessProgram.fitness_program', 'users')
+    serialize_rules = ('-user_fitness_programs.fitness_program',)
 
 
 
