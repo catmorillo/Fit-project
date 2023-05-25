@@ -133,3 +133,24 @@ export default App;
       //     return <Login onLogin={setUser} />;
       //   }
       // }
+
+
+
+
+    //   const handleLogout = () =>  {
+    //     localStorage.removeItem('accessToken');
+    //     onLogout();
+    //     // history.push('/login');
+    // };
+    //     return (
+    //     <div> 
+    
+    
+    
+    //         <h1>Logout</h1>
+    //         <button onClick={handleLogout}>Logout</button>    
+    //     </div>
+    //     );
+    // }
+
+

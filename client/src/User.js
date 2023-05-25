@@ -2,10 +2,10 @@
 import {useState} from 'react';
 import React from 'react'; 
 
-function User({id, name, handleUserDelete, handleUserPatch}){
+function User({id, username, handleUserDelete, handleUserPatch}){
   
     const [userName, setUserName] = useState('');
-    const [userAge, setUserAge] = useState('');
+    // const [userAge, setUserAge] = useState('');
     
    
 
@@ -19,8 +19,7 @@ function User({id, name, handleUserDelete, handleUserPatch}){
         e.preventDefault();
         
         let newUserObj = {
-            name: userName, 
-            age: userAge,  
+            name: userName,  
         };
 
         fetch(`/users/${id}`, {
@@ -47,14 +46,14 @@ function User({id, name, handleUserDelete, handleUserPatch}){
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder="Insert name"
                       />
-                      Age:
+                      {/* Age:
                       <input
                         type="text"
                         id="age"
                         name="age"
                         onChange={(e) => setUserAge(parseInt(e.target.value))}
                         placeholder=" Insert Age"
-                      />   
+                      />    */}
             
             <button type="button" onClick={handleDelete}>
               Delete User
