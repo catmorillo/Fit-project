@@ -2,24 +2,30 @@
 import {useState} from 'react';
 import React from 'react'; 
 
-function User({id, username, handleUserDelete, handleUserPatch}){
+function User({id, name, handleUserDelete, handleUserPatch}) {
   
     const [userName, setUserName] = useState('');
-    // const [userAge, setUserAge] = useState('');
+    const [userId, setUserId] = useState('');
     
    
 
     const handleDelete = (e) => {
-        handleUserDelete(id);
-        fetch(`/users/${id}`, {
-            method: "DELETE"
+      fetch(`/users/${id}`, {
+        method: "DELETE"
+      })
+        .then((response) => response.json())
+        .then(() => {
+          handleUserDelete(id);
         })
-    }
+        .catch((error) => {
+          console.error(error);
+    });
+  };
     const handlePatch = (e) => {
         e.preventDefault();
         
         let newUserObj = {
-            name: userName,  
+            name: userName,
         };
 
         fetch(`/users/${id}`, {
@@ -31,57 +37,30 @@ function User({id, username, handleUserDelete, handleUserPatch}){
             .then(handleUserPatch);
      };
 
-   return (
+return (
    
-    <div style={{backgroundColor: "lightpink"}}>
-      <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50">
-         <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'>
-          
+    <div style={{backgroundColor: "lightpink"}} >
+      <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50"/>
+         <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'/>
+
+
               <form onSubmit={handlePatch} className="form">
-                      Username:
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        onChange={(e) => setUserName(e.target.value)}
-                        placeholder="Insert name"
-                      />
-                      {/* Age:
-                      <input
-                        type="text"
-                        id="age"
-                        name="age"
-                        onChange={(e) => setUserAge(parseInt(e.target.value))}
-                        placeholder=" Insert Age"
-                      />    */}
+                Username:
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="Insert name"
+                />
+
             
-            <button type="button" onClick={handleDelete}>
-              Delete User
-           
-            {/* <button onClick={handlePatch}></button> */}
-            
+            <button type="submit">
+              Edit User
             </button>
-            </form>
+          </form>
         </div>
-      </div>
-    </div>
-
-   );
-}       
-                
-  
-          
-          
-
-export default User;
-
-
-
-
-
-
- 
-// Functions such as useEffect and event listeners
-
-// Render method (Returning jsx) */}
-
+);
+}
+   
+export default User

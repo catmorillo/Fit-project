@@ -13,7 +13,7 @@ function NavBar({onLogout}) {
     };
 
     return ( 
-
+        
         <nav className="bg-white w-screen">
             <div className="flex justify between items-center"> 
             {/* <h1>Logout</h1> */}
@@ -21,7 +21,8 @@ function NavBar({onLogout}) {
                 <div className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-500 mb-6 w-full">
                 <div className="flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
                         <a className="text-lg font-Helvetica-BoldOblique leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
-                          Get Fit To Flex
+                        <h1>Get Fit To Flex</h1> 
+                        <p style={{backgroundColor: "lightpink", textAlign: "center"}} />
                         </a>
                         <button className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
                           <span className="block relative w-6 h-px rounded-sm bg-white"></span>

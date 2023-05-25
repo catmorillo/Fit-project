@@ -2,27 +2,31 @@ import React from 'react';
 import { useState} from 'react';
 
 
-function UserFitnessProgram({fitness_program}) {
+function UserFitnessProgram({fitness_program, description, duration, difficulty, gym_frequency, training_split}) {
     const [isVisible, setIsVisible] = useState(false);
-    const handleButton =() => {
-    setIsVisible(isVisible);
+    const handleClick =() => {
+    setIsVisible(!isVisible);
 };
     return (
-        <div>                     
-                <h2> Fitness Program: {fitness_program?.name} </h2>
-                {isVisible && (                              
+         <div>                   
+                <h2> User Fitness Program: {fitness_program?.name} </h2>
+                {isVisible && (     
             <div>
-                {/* <h2>Plan: {description} </h2> */}
+                <h2>Description: {fitness_program.description} </h2>
+                <h2>Duration: {fitness_program.duration}</h2>
+                <h2>Difficulty: {fitness_program.difficulty}</h2>
+                <h2>Gym Frequency: {fitness_program.gym_frequency}</h2>
+                <h2>Training Split: {fitness_program.training_split}</h2>
             </div>
-            )}
-            <button onClick={handleButton}className="button button--primary">
-            Click
+            )} 
+             <button onClick={handleClick}className="button button--primary">
+                View
             </button>    
-        </div> 
+        </div>  
         
-    );
+     );
 }
-
+export default UserFitnessProgram;
 //     return (
 //         <div>
 //             <h1> Your Fitness Program</h1>
@@ -37,7 +41,7 @@ function UserFitnessProgram({fitness_program}) {
 //     );
  } */
 
-export default UserFitnessProgram;
+
 
 
 

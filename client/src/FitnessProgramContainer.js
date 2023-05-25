@@ -17,40 +17,11 @@ function FitnessProgramContainer({fitnessProgram}) {
              {...program}                               
         />
     })  
-// function handleCreateUserFitnessProgram() {
-//     const newFitnessProgram = {
-//         user_id: 'user_id',
-//         fitness_program_id: 'fitness_program_id',
-//     };
-       
-//     fetch('/user_fitness_programs', {
-//     method:'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(newFitnessProgram),
-//         })
-//             .then((r) => {
-//                 if (r.ok) {
-//                     return r.json();
-//                 } else 
-//                 {
-//                     throw new Error('Failed to create fitness program');
-//                 }
-//             })
-//             .then((createdProgram) => {
-//                 setUserFitnessProgramsList([...userFitnessProgramsList, createdProgram]);
-//             });
-//         }    
     
-    return(
-                
+    return(                
         <div style={{backgroundColor: "lightpink", textAlign: "center"}}>           
             <h1> Packages for Exercise Programs</h1>
-                {WO}
-                {/* <button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
-                +
-               </button>  */}
+            {WO}
         </div>                
     )
 }

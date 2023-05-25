@@ -99,23 +99,24 @@ class UserById(Resource):
             db.session.delete(user)
             db.session.commit()
             return make_response({}, 204)
-    
+
+    def patch(self, id):
+        data = request.get_json()
+        user = User.query.filter_by(id = id).first()
+        try:
+            for attr in data:
+                setattr(user, attr, data[attr])
+        except ValueError:
+            return make_response(
+                {'error': 'Invalid'}, 400)
+        db.session.add(user)
+        db.session.commit()
+        return make_response(user.to_dict(), 202)    
         
 
 api.add_resource(UserById,'/users/<int:user_id>')
     
-#    def patch(self, id):
-#         data = request.get_json()
-#         user = User.query.fitler_by(id = id).first()
-#         try:
-#             for attr in data:
-#                 setattr(user, attr, data[attr])
-#         except ValueError:
-#             return make_response(
-#                 {'error': 'Invalid'}, 400)
-#         db.session.add(user)
-#         db.session.commit()
-#         return make_response(user.to_dict(), 202)
+
 
 class FitnessPrograms(Resource):
     def get(self):
@@ -177,13 +178,4 @@ api.add_resource(UserFitnessPrograms,'/user_fitness_programs')
 
 if __name__=='__main__':
     app.run(port = 5555, debug = True)
-
-
-
-## FORM ##
-# @app.route("http://localhost:3000", methods=["POST"])
-# def form(User):
-#     data = request.get_json()
-#     print(data) # do something with the data here
-#     return jsonify({"message": "Form submitted successfully"})
 
