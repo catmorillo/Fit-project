@@ -1,9 +1,8 @@
 //import logo from './logo.svg';
-import NavBar from './NavBar'
-// import Form from './Form'
 // import UserFitnessProgram from './userFitnessProgram';
+import React from 'react'; 
+import NavBar from './NavBar'
 
-import './stylesheets/App.css';
 import {useEffect, useState} from 'react';
 import {Route, Switch, useHistory} from 'react-router-dom';
 import UserContainer from './UserContainer';
@@ -11,7 +10,21 @@ import FitnessProgramContainer from './FitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
 import Signup from './Signup';
+import User from './User';
+// import { Button } from '@mui/material'; 
 // import Logout from './Logout';
+// const UserContext = React.createContext();
+
+// const UserProvider =({ children }) => {
+//   const [user, setUser] = useState(null);
+  
+
+//   return(
+//     <UserContext.Provider value={{ user, setUser}}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
 
 
 function App() {
@@ -20,8 +33,9 @@ function App() {
   const [fitnessProgram, setFitnessProgram] = useState([]);
   const [signUp, setSignUp] = useState([]);
   const history = useHistory();
- 
   
+
+
   useEffect(() => {
     fetch('/check_session')
     .then((response) => response.json())
@@ -69,13 +83,7 @@ function App() {
   const addUserState = (newUserObj) => {
     setUser([newUserObj, ...user]);
   }
-  const handleUserDelete = (id) => {
-    if (user) {
-      setUser (user.filter(user_id => {
-          return user_id.id ===id;
-      }));
-    }
-  }
+  
   const handleUserPatch = (updatedUser) => {   
     setUser (user.map(user => {
       if (user.id === updatedUser.id) {
@@ -88,12 +96,12 @@ function App() {
 
   return (
   <div>
+    {/* <Button>Click me </Button> */}
     <NavBar/> 
     <Switch>
       <Route exact path='/user'>
-        <UserContainer user={user}
-        handleUserDelete={handleUserDelete}/>
-        {/* handleUserPatch={handleUserPatch}/> */}
+        <UserContainer user={user}/>
+        {/* <User addUser = {addUserState} />  */}
       </Route>
       <Route exact path='/userFitnessProgram'>
         <UserFitnessProgramContainer 
@@ -110,6 +118,7 @@ function App() {
         <Signup signUp={signUp} />
        </Route>
       </Switch>
+ 
       {/* {user && <button onClick={handleLogout}>Logout</button>}     */}
     </div>
     );

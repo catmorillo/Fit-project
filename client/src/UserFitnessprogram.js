@@ -2,15 +2,50 @@ import React from 'react';
 import { useState} from 'react';
 
 
-function UserFitnessProgram({fitness_program, description, duration, difficulty, gym_frequency, training_split}) {
+function UserFitnessProgram({fitness_program, id, handleUserDelete}) {
     const [isVisible, setIsVisible] = useState(false);
+    const fitnessProgramId = 1
+    const handleDelete = () => {
+        fetch(`/user_fitness_programs?fitness_program_id=${fitnessProgramId}`,{
+            method:'DELETE',
+        })
+        .then((response) => {
+            if (response.ok) {
+                console.log("Fitness program deleted successfully")
+            } else {
+                console.error("Failed to delete fitness program");
+            }
+        })
+        // e.preventDefault();
+    };
+
+    // const handleDelete = () => {
+    //     fetch(`/fitness_program_id/${id}`,{
+    //         method:'DELETE',
+    //     })
+    //     .then((response) => {
+    //         if (response.ok) {
+    //             console.log('Fitness Program deleted successfully!');
+    //             handleUserDelete(id); 
+    //         } else {
+    //             console.error('Failed to delete fitness program');
+    //         }
+    //     })
+        
+    // }
+
+
+
+
+
     const handleClick =() => {
     setIsVisible(!isVisible);
 };
     return (
-         <div>                   
-                <h2> User Fitness Program: {fitness_program?.name} </h2>
-                {isVisible && (     
+         <div>   
+            
+            <h2> User Fitness Program: {fitness_program?.name} </h2>
+            {isVisible && (    
             <div>
                 <h2>Description: {fitness_program.description} </h2>
                 <h2>Duration: {fitness_program.duration}</h2>
@@ -19,9 +54,13 @@ function UserFitnessProgram({fitness_program, description, duration, difficulty,
                 <h2>Training Split: {fitness_program.training_split}</h2>
             </div>
             )} 
-             <button onClick={handleClick}className="button button--primary">
+            <button type="submit" onClick={handleDelete}>
+                Delete 
+            </button>
+             <button type="button" onClick={handleClick}className="button button--primary">
                 View
-            </button>    
+            </button> 
+       
         </div>  
         
      );

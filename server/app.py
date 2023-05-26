@@ -78,43 +78,57 @@ class Users(Resource):
         data = request.get_json()
         try:
             new_user = User(
-                name=data['name'],
-                age=data['age'],
+                name=data['name']
             )
         except:
             return make_response({'error': 'Invalid username or password'},400)
         db.session.add(new_user)
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
-    # def patch(self): 
+
 
 api.add_resource(Users,'/users')
 
-class UserById(Resource):
-    def delete(self, user_id):
-        user = User.query.filter_by(id=user_id).first()
+class UsersById(Resource):
+    def get(self, id):
+        user= User.query.filter_by(id=id).first()
         if not user:
-            return make_response({'error': '404 user not found'}, 404)
+            return make_response({'error':'user not found'}, 404)
         else:
-            db.session.delete(user)
-            db.session.commit()
-            return make_response({}, 204)
+            return make_response(user.to_dict(), 200)
 
     def patch(self, id):
-        data = request.get_json()
+        data= request.get_json()
         user = User.query.filter_by(id = id).first()
         try:
             for attr in data:
                 setattr(user, attr, data[attr])
         except ValueError:
             return make_response(
-                {'error': 'Invalid'}, 400)
-        db.session.add(user)
+                {'error': 'Could not change the user!'}, 
+                400
+            )
+        db.session.commit(user)
         db.session.commit()
-        return make_response(user.to_dict(), 202)    
-        
+        return make_response(user.to_dict(), 202)
+api.add_resource(UsersById,'/users/<int:id>') 
+# class UserById(Resource):
 
-api.add_resource(UserById,'/users/<int:user_id>')
+#     def patch(self, user_id):
+#         data = request.get_json()
+#         user = User.query.filter_by(id =user_id).first()
+#         if not user: 
+#             return make_response({'error': 'User not found'}, 404)
+#         try: 
+#             for attr in data:
+#                 setattr(user, attr, data[attr])
+#             db.session.commit()
+#             return make_response(user.to_dict(), 202)  
+#         # except ValueError:
+#         except: 
+#             return make_response({'error': 'Could not update user'}, 500)
+       
+# api.add_resource(UserById,'/users/<int:user_id>')
     
 
 
@@ -166,11 +180,22 @@ class UserFitnessPrograms(Resource):
         db.session.add(userWo)
         db.session.commit()
         return make_response(userWo.to_dict(), 201)
-api.add_resource(UserFitnessPrograms,'/user_fitness_programs')
+api.add_resource(UserFitnessPrograms,'/user_fitness_programs')  
+
+# class UserFitnessProgramsById(Resource):             
+#     def delete(self, fitness_program_id):
+#         user_fitness_program = UserFitnessProgram.query.get(fitness_program_id)
+#         if not user_fitness_program:
+#             return make_response({'error': "Fitness program not found "}, 404)
+        
+#         db.session.delete(user_fitness_program)
+#         db.session.commit()
+#         return make_response({'message': 'Fitness program deleted!'}, 200)
+#     api.add_resource(UserFitnessPrograms,'/user_fitness_programs/<int:fitness_program_id>')
 
     # fitness_programs = FitnessProgram.query.all()
-        # fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]
-        # return fitness_programs
+    #     fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]
+    #     return fitness_programs
     # db.session.add(fitness_program)  
     # db.session.commit()
 
@@ -179,3 +204,11 @@ api.add_resource(UserFitnessPrograms,'/user_fitness_programs')
 if __name__=='__main__':
     app.run(port = 5555, debug = True)
 
+#     def delete(self, user_id):
+#         user = User.query.filter_by(id=user_id).first()
+#         if not user:
+#             return make_response({'error': '404 user not found'}, 404)
+#         else:
+#             db.session.delete(user)
+#             db.session.commit()
+#             return make_response({}, 204)

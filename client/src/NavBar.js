@@ -3,8 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 function NavBar({onLogout}) {
 
-
-
     // const history = useHistory();
     const handleLogout = () =>  {
         localStorage.removeItem('accessToken');
@@ -13,17 +11,16 @@ function NavBar({onLogout}) {
     };
 
     return ( 
-        
-        <nav className="bg-white w-screen">
+         <nav className="bg-white w-screen">
             <div className="flex justify between items-center"> 
             {/* <h1>Logout</h1> */}
             {/* <button onClick={handleLogout}>Logout</button>  */}
                 <div className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-500 mb-6 w-full">
-                <div className="flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
-                        <a className="text-lg font-Helvetica-BoldOblique leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
+                  <div className="flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+                        <div className="text-lg font-Helvetica-BoldOblique leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
                         <h1>Get Fit To Flex</h1> 
                         <p style={{backgroundColor: "lightpink", textAlign: "center"}} />
-                        </a>
+                        </div>
                         <button className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
                           <span className="block relative w-6 h-px rounded-sm bg-white"></span>
                           <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
@@ -65,6 +62,14 @@ function NavBar({onLogout}) {
                                 <a className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
                                   <i className="fab fa-twitter text-lg leading-lg text-white opacity-75" /> 
                                     <span className="ml-2"> Fitness Program  </span>
+                                </a>         
+                              </NavLink>
+                            </li>
+                            <li className="nav-item">
+                              <NavLink to ='/Signup' exact className="text-white font-bold">
+                                <a className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
+                                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75" /> 
+                                    <span className="ml-2"> Sign up!  </span>
                                 </a>         
                               </NavLink>
                             </li>
