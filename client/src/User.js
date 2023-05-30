@@ -1,31 +1,17 @@
 // import React, {useContext} from 'react';
 import React, {useState} from 'react'; 
 import styles from "./mystyle.module.css";
+import {Button} from 'semantic-ui-react';
+
 function User({id, name, handleUserPatch}) {
   
     const [userName, setUserName] = useState('');
-    // const [userId, setUserId] = useState('');
-    
   
-  //   const handleDelete = (e) => {
-  //     fetch(`/users/${id}`, {
-  //       method: "DELETE"
-  //     })
-  //       .then((response) => response.json())
-  //       .then(() => {
-  //         handleUserDelete(id);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //   });
-  // };
-
-
     const handlePatch = (e) => {
         e.preventDefault();
         
         let updatedUser = {
-            name: userName,
+          username: userName,
         };
 
       fetch(`/users/${id}`, {
@@ -55,12 +41,31 @@ return (
                 />
 
             
-            <button onClick={handlePatch}>
+            <Button onClick={handlePatch}>
               Edit User
-            </button>
+            </Button>
           </form>
         </div>
 );
 }
    
 export default User
+
+
+
+
+  // const [userId, setUserId] = useState('');
+    
+  
+  //   const handleDelete = (e) => {
+  //     fetch(`/users/${id}`, {
+  //       method: "DELETE"
+  //     })
+  //       .then((response) => response.json())
+  //       .then(() => {
+  //         handleUserDelete(id);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //   });
+  // };

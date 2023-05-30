@@ -12,6 +12,7 @@ function UserContainer({user, handleUserPatch}) {
             key = {user?.id}
             name = {user?.name}
             handleUserPatch = {handleUserPatch}
+            id={user?.id}
         />
             </div>
         </div>

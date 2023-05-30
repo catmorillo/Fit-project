@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 // import UserFitnessProgram from './userFitnessProgram';
 import React from 'react'; 
 import NavBar from './NavBar'

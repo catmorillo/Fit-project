@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import styles from "./mystyle.module.css";
-
+import {Button} from 'semantic-ui-react';
 
 
 function Login({onLogin}) {
@@ -59,7 +59,7 @@ function handleSubmit(e) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit">Login</button>
+            <Button type="submit">Login</Button>
         </form>           
     </div>
     );

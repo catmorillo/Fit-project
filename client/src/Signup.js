@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from "./mystyle.module.css";
 import {Message} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react';
 
 function Signup(){
     const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ function Signup(){
 
     const [showMsg, setShowMsg]= useState('')
     const message = () => {
-        setShowMsg(<Message succes header="You are now logged in!" content="Thank you for singning up"/>)
+        setShowMsg(<Message succes header="You are now logged in!" content="Thank you for signing up"/>)
     }
 
 function handleSubmit(e) {   
@@ -46,7 +47,8 @@ function handleSubmit(e) {
 
 }
     return (
-        
+        <div className={styles.signup}>
+        <img src="https://i.pinimg.com/736x/9e/48/cb/9e48cb202329ad2b153e7b4c0823e325.jpg"/>"
         <form onSubmit={handleSubmit}>
             <label>
                 Username:
@@ -72,14 +74,14 @@ function handleSubmit(e) {
                     onChange={(e) => setEmail(e.target.value)}   
                     />               
             </label>
-            <button type="submit">Sign Up</button>
+            <Button type="submit">Sign Up</Button>
             {showMsg}
         </form>
-            
+        </div>    
     );
   }
 (
-    <span className={styles.signup}></span>
+    <span className={styles.signupbutton}></span>
   )
 export default Signup; 
 

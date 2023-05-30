@@ -78,7 +78,7 @@ class Users(Resource):
         data = request.get_json()
         try:
             new_user = User(
-                name=data['name']
+                username=data['name']
             )
         except:
             return make_response({'error': 'Invalid username or password'},400)
@@ -108,7 +108,7 @@ class UsersById(Resource):
                 {'error': 'Could not change the user!'}, 
                 400
             )
-        db.session.commit(user)
+        db.session.add(user)
         db.session.commit()
         return make_response(user.to_dict(), 202)
 api.add_resource(UsersById,'/users/<int:id>') 
@@ -182,16 +182,16 @@ class UserFitnessPrograms(Resource):
         return make_response(userWo.to_dict(), 201)
 api.add_resource(UserFitnessPrograms,'/user_fitness_programs')  
 
-# class UserFitnessProgramsById(Resource):             
-#     def delete(self, fitness_program_id):
-#         user_fitness_program = UserFitnessProgram.query.get(fitness_program_id)
-#         if not user_fitness_program:
-#             return make_response({'error': "Fitness program not found "}, 404)
+class UserFitnessProgramsById(Resource):             
+    def delete(self, id):
+        user_fitness_program = UserFitnessProgram.query.filter_by(id = id).first()
+        if not user_fitness_program:
+            return make_response({'error': "Fitness program not found "}, 404)
         
-#         db.session.delete(user_fitness_program)
-#         db.session.commit()
-#         return make_response({'message': 'Fitness program deleted!'}, 200)
-#     api.add_resource(UserFitnessPrograms,'/user_fitness_programs/<int:fitness_program_id>')
+        db.session.delete(user_fitness_program)
+        db.session.commit()
+        return make_response({'message': 'Fitness program deleted!'}, 200)
+api.add_resource(UserFitnessProgramsById,'/user_fitness_programs/<int:id>')
 
     # fitness_programs = FitnessProgram.query.all()
     #     fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]

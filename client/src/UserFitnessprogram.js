@@ -1,22 +1,28 @@
 import React from 'react';
 import { useState} from 'react';
 import styles from "./mystyle.module.css";
+import {Button} from 'semantic-ui-react';
+// import styles from './userFitnessProgram.module.css';
 
-function UserFitnessProgram({fitness_program, id, handleUserDelete}) {
+function UserFitnessProgram({fitness_program, id}) {
     const [isVisible, setIsVisible] = useState(false);
-    const fitnessProgramId = 1
+
     const handleDelete = () => {
-        fetch(`/user_fitness_programs?fitness_program_id=${fitnessProgramId}`,{
+        fetch(`/user_fitness_programs/${id}`,{
             method:'DELETE',
         })
         .then((response) => {
             if (response.ok) {
                 console.log("Fitness program deleted successfully")
+                handleDelete(id); 
             } else {
-                console.error("Failed to delete fitness program");
+                console.error("Failed to delete Catherinaaa fitness program");
             }
         })
-        // e.preventDefault();
+        // .catch((error) => {
+        //     console.error("Failed to delete fitness program", error);
+        // });
+        
     };
 
     // const handleDelete = () => {
@@ -34,51 +40,39 @@ function UserFitnessProgram({fitness_program, id, handleUserDelete}) {
         
     // }
 
-
-
-
-
     const handleClick =() => {
     setIsVisible(!isVisible);
 };
     return (
-         <div>   
-            <h1 className={styles.user}></h1>
+         <div>
+              
+            {/* <h1 className={styles.user}></h1> */}
+            <h2 className={styles.userfitnessprogram}></h2>
             <h2> User Fitness Program: {fitness_program?.name} </h2>
             {isVisible && (    
             <div>
+                {/* <img src=""/> */}
                 <h2>Description: {fitness_program.description} </h2>
-                <h2>Duration: {fitness_program.duration}</h2>
+               
+                <img src="https://media.istockphoto.com/id/693655538/photo/prove-it-to-yourself.webp?b=1&s=170667a&w=0&k=20&c=ZkDv9zGKC57Z3sTu5pAuJ8yHl7iOdsKI_rCf3aSxaV0=" alt="Fitness" />
+                <h2>Duration: {fitness_program.duration}</h2>               
                 <h2>Difficulty: {fitness_program.difficulty}</h2>
                 <h2>Gym Frequency: {fitness_program.gym_frequency}</h2>
                 <h2>Training Split: {fitness_program.training_split}</h2>
             </div>
-            )} 
-            <button type="submit" onClick={handleDelete}>
+            )}            
+            <Button type="submit" onClick={handleDelete}> 
                 Delete 
-            </button>
-             <button type="button" onClick={handleClick}className="button button--primary">
+            </Button>
+             <Button type="button" onClick={handleClick}className="button button--primary">
                 View
-            </button> 
-       
+            </Button> 
+            
         </div>  
         
      );
 }
 export default UserFitnessProgram;
-//     return (
-//         <div>
-//             <h1> Your Fitness Program</h1>
-//             {userFitnessPrograms.map((program) => ( */}
-/* //                 <div key={program.id}>
-//                     <h3>{program.name}</h3>
-//                     <p>{program.description}</p>
-//                 </div>
-//             ))}
-//         </div>
-        
-//     );
- } */
 
 
 

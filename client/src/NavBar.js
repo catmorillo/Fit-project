@@ -63,7 +63,7 @@ function NavBar({onLogout}) {
                             </li>
                             <li className="nav-item">
                               <NavLink to ='/Signup' exact className="text-white font-bold">                                
-                                <span className={styles.signup}> Sign up!  </span>
+                                <span className={styles.signupbutton}> Sign up </span>
                               </NavLink>
                             </li>
                             <li className="nav-item">

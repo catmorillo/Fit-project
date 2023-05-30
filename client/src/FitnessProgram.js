@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // import FitnessProgramContainer from './FitnessProgramContainer';
 // import styles from "./mystyle.module.css";
 import styles from "./mystyle.module.css";
-    
+import {Button} from 'semantic-ui-react';  
 
 function FitnessProgram({id, name, description, duration, difficulty, gym_frequency, training_split}){
 
@@ -39,7 +39,8 @@ function handleCreateUserFitnessProgram() {
     }
 
     return(
-        <div>   <h1 className={styles.fitnessprogram}></h1>
+        <div>  
+                <h1 className={styles.fitnessprogram}></h1>
                 <h2>Program : {name} </h2>
                 {isVisible && (
             <div>
@@ -50,12 +51,12 @@ function handleCreateUserFitnessProgram() {
                 <h2>Training Split : {training_split}</h2>
             </div>
                 )}
-                <button onClick={handleButton}className="button button--primary">
+                <Button onClick={handleButton}className="button button--primary">
                  Click here
-                </button>
-                <button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
+                </Button>
+                <Button onClick={handleCreateUserFitnessProgram} style={{fontSize: '24px'}} >
          +
-        </button>              
+        </Button>              
         </div>            
     );
 }
