@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState} from 'react';
-
+import styles from "./mystyle.module.css";
 
 function UserFitnessProgram({fitness_program, id, handleUserDelete}) {
     const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +43,7 @@ function UserFitnessProgram({fitness_program, id, handleUserDelete}) {
 };
     return (
          <div>   
-            
+            <h1 className={styles.user}></h1>
             <h2> User Fitness Program: {fitness_program?.name} </h2>
             {isVisible && (    
             <div>

@@ -1,0 +1,53 @@
+/* NavBar */
+.link {
+    color: pink;
+    padding: 40px;
+    font-size:30px;
+}
+.NavBar {
+    text-align: center;
+    margin:30px;
+}
+.hi{
+    text-align: center;
+    font-size: 40px; 
+    vertical-align: middle;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif" 
+}
+.home{
+    text-align:center;
+    /* background-image:url("https://media.istockphoto.com/id/693655538/photo/prove-it-to-yourself.webp?b=1&s=170667a&w=0&k=20&c=ZkDv9zGKC57Z3sTu5pAuJ8yHl7iOdsKI_rCf3aSxaV0="); */
+    background-size: cover;
+    background-position: center;
+    font-size: 20px;
+    vertical-align: middle;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif" 
+}
+.login{
+    text-align:left;
+    font-size: 20px;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif" 
+}
+.user{
+    text-align:center;
+    font-size: 20px;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    margin-top: 30px
+}
+.fitnessprogram{
+    text-align:center;
+    font-size: 20px;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    margin-top: 30px
+}
+.signup{
+    text-align:left;
+    font-size: 20px;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif" 
+}
+.userfitnessprogram{
+    text-align:center;
+    font-size: 20px;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    margin-top: 30px
+}

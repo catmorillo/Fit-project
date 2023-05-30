@@ -1,15 +1,21 @@
 import React from 'react';
 import {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import styles from "./mystyle.module.css";
+import {Message} from 'semantic-ui-react'
 
-
-function Signup({}){
+function Signup(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const formData = {username, password, email};
     const [user, setUser] = useState(null);
     const history = useHistory();
+
+    const [showMsg, setShowMsg]= useState('')
+    const message = () => {
+        setShowMsg(<Message succes header="You are now logged in!" content="Thank you for singning up"/>)
+    }
 
 function handleSubmit(e) {   
     e.preventDefault();
@@ -26,6 +32,7 @@ function handleSubmit(e) {
             // update user state and navigate to new route
             console.log(data);
             setUser(data); 
+            message(showMsg)
     })
        .catch((error) => {
             console.error('Signup error', error);
@@ -39,6 +46,7 @@ function handleSubmit(e) {
 
 }
     return (
+        
         <form onSubmit={handleSubmit}>
             <label>
                 Username:
@@ -65,35 +73,14 @@ function handleSubmit(e) {
                     />               
             </label>
             <button type="submit">Sign Up</button>
+            {showMsg}
         </form>
-    
+            
     );
   }
+(
+    <span className={styles.signup}></span>
+  )
 export default Signup; 
 
 
-
-
-
-
-           
-           {/* <button type="button"
-            className="animate-pulse inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500 sm:text-sm"
-            onClick={handleDelete} 
-            > </button>
-          <div> 
-            <form onSubmit={handlePatch} className="form">
-            <input
-                type="text"
-                id="id"
-                name="name"
-                onChange={(e) => setUserName(e.target.value)}
-                placeholder=""
-                />
-            <input
-                type="text"
-                id="id"
-                age="age"
-                onChange={(e) => setUserAge(parseInt(e.target.value))}
-                placeholder=""
-                /> */}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 // import FitnessProgramContainer from './FitnessProgramContainer';
 // import styles from "./mystyle.module.css";
-
+import styles from "./mystyle.module.css";
     
 
 function FitnessProgram({id, name, description, duration, difficulty, gym_frequency, training_split}){
@@ -39,7 +39,7 @@ function handleCreateUserFitnessProgram() {
     }
 
     return(
-        <div>
+        <div>   <h1 className={styles.fitnessprogram}></h1>
                 <h2>Program : {name} </h2>
                 {isVisible && (
             <div>

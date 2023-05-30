@@ -9,7 +9,7 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False) 
-    age = db.Column(db.Integer)
+    # age = db.Column(db.Integer)
     _password_hash = db.Column(db.String(50), nullable = False)
     email = db.Column(db.String(50), unique=True, nullable = False)
     # user_fitness_programs = db.relationship("UserFitnessProgram", backref="user")

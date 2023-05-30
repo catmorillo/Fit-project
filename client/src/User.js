@@ -1,6 +1,6 @@
 // import React, {useContext} from 'react';
 import React, {useState} from 'react'; 
-
+import styles from "./mystyle.module.css";
 function User({id, name, handleUserPatch}) {
   
     const [userName, setUserName] = useState('');
@@ -28,8 +28,6 @@ function User({id, name, handleUserPatch}) {
             name: userName,
         };
 
-
-
       fetch(`/users/${id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
@@ -44,7 +42,7 @@ return (
     <div style={{backgroundColor: "lightpink"}} >      
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50"/>
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'/>
-
+         <h1 className={styles.user}></h1>
 
               <form onSubmit={handlePatch} className="form">
                 Username:
