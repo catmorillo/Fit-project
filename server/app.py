@@ -5,7 +5,6 @@ from sqlalchemy.exc import IntegrityError
 from config import app, db, api
 from sqlalchemy.ext.associationproxy import association_proxy
 
-
 @app.route('/Home') 
 def root_route():
     return "Welcome to Fit to Flex!\n"
@@ -16,7 +15,6 @@ class Signup(Resource):
         user = User.query.filter_by(username=data['username']).first()
         if user:
             return make_response({'error': 'Username or email already exists'}, 422)
-            # return jsonify({'error': 'Username or email already exists'}), 409
         try:
             new_user = User(
                 username=data['username'],
@@ -31,7 +29,6 @@ class Signup(Resource):
             return make_response({'error': 'Could not create user'}, 422) 
 
 api.add_resource(Signup, '/signup')    
-
 
 class CheckSession(Resource):
     def get(self):
@@ -51,10 +48,8 @@ class Login(Resource):
             return {'error': 'Invalid username or password'}, 401
 
         password = request.get_json()['password']
-        if user.authenticate(password):
-        
+        if user.authenticate(password):        
             session['user_id'] = user.id
-
             return make_response(user.to_dict(),  200)
         else: 
             return {'error': 'Invalid username or password'}, 401
@@ -62,7 +57,6 @@ class Login(Resource):
 api.add_resource(Login,'/login')
 
 class Logout(Resource):
-
     def delete(self): 
         session('user_id', None)
         return {'message':' Logged out successfully!'}, 200
@@ -112,24 +106,6 @@ class UsersById(Resource):
         db.session.commit()
         return make_response(user.to_dict(), 202)
 api.add_resource(UsersById,'/users/<int:id>') 
-# class UserById(Resource):
-
-#     def patch(self, user_id):
-#         data = request.get_json()
-#         user = User.query.filter_by(id =user_id).first()
-#         if not user: 
-#             return make_response({'error': 'User not found'}, 404)
-#         try: 
-#             for attr in data:
-#                 setattr(user, attr, data[attr])
-#             db.session.commit()
-#             return make_response(user.to_dict(), 202)  
-#         # except ValueError:
-#         except: 
-#             return make_response({'error': 'Could not update user'}, 500)
-       
-# api.add_resource(UserById,'/users/<int:user_id>')
-    
 
 
 class FitnessPrograms(Resource):
@@ -155,7 +131,6 @@ class FitnessPrograms(Resource):
         db.session.add(prog)
         db.session.commit()
         return make_response( prog.to_dict(), 201) 
-
 
 api.add_resource(FitnessPrograms,'/fitness_programs')   
 
@@ -193,22 +168,5 @@ class UserFitnessProgramsById(Resource):
         return make_response({'message': 'Fitness program deleted!'}, 200)
 api.add_resource(UserFitnessProgramsById,'/user_fitness_programs/<int:id>')
 
-    # fitness_programs = FitnessProgram.query.all()
-    #     fitness_programs = [{'id': program.id, 'name': program.name} for program in fitness_programs]
-    #     return fitness_programs
-    # db.session.add(fitness_program)  
-    # db.session.commit()
-
-    
-
 if __name__=='__main__':
     app.run(port = 5555, debug = True)
-
-#     def delete(self, user_id):
-#         user = User.query.filter_by(id=user_id).first()
-#         if not user:
-#             return make_response({'error': '404 user not found'}, 404)
-#         else:
-#             db.session.delete(user)
-#             db.session.commit()
-#             return make_response({}, 204)

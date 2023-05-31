@@ -1,4 +1,3 @@
-// import React, {useContext} from 'react';
 import React, {useState} from 'react'; 
 import styles from "./mystyle.module.css";
 import {Button} from 'semantic-ui-react';
@@ -23,13 +22,11 @@ function User({id, name, handleUserPatch}) {
         .then(handleUserPatch);
      };
 
-return (
-   
+return (   
     <div style={{backgroundColor: "lightpink"}} >      
       <div className="outline-solid max-w-sm rounded overflow-hidden shadow-lg shadow-gray-500/50"/>
          <div className= 'flex flex-col rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52'/>
          <h1 className={styles.user}></h1>
-
               <form onSubmit={handlePatch} className="form">
                 Username:
                 <input
@@ -38,34 +35,12 @@ return (
                   name="name"
                   onChange={(e) => setUserName(e.target.value)}
                   placeholder="Insert name"
-                />
-
-            
+                />            
             <Button onClick={handlePatch}>
               Edit User
             </Button>
           </form>
         </div>
 );
-}
-   
+}   
 export default User
-
-
-
-
-  // const [userId, setUserId] = useState('');
-    
-  
-  //   const handleDelete = (e) => {
-  //     fetch(`/users/${id}`, {
-  //       method: "DELETE"
-  //     })
-  //       .then((response) => response.json())
-  //       .then(() => {
-  //         handleUserDelete(id);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //   });
-  // };

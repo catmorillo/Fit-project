@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-// import FitnessProgramContainer from './FitnessProgramContainer';
-// import styles from "./mystyle.module.css";
 import styles from "./mystyle.module.css";
 import {Button} from 'semantic-ui-react';  
 
@@ -11,7 +9,6 @@ function FitnessProgram({id, name, description, duration, difficulty, gym_freque
         setIsVisible(!isVisible);
     };
     const [userFitnessProgramsList, setUserFitnessProgramsList] = useState([]);
-
 
 function handleCreateUserFitnessProgram() {
     const newFitnessProgram = {
@@ -37,7 +34,6 @@ function handleCreateUserFitnessProgram() {
             setUserFitnessProgramsList([...userFitnessProgramsList, createdProgram]);
         });
     }
-
     return(
         <div>  
                 <h1 className={styles.fitnessprogram}></h1>
@@ -62,37 +58,5 @@ function handleCreateUserFitnessProgram() {
 }
 export default FitnessProgram;
 
-
-
-
-
-
-
-
-//make fetch request for fitness programs 
-
-//     const [fitnessProgramName, setFitnessProgramName] = useState('');
-//     const [fitnessProgramBulking, setFitnessProgramBulking] = useState('');
-//     const [fitnessProgramCutting, setFitnessProgramCutting] = useState('');
-//     const [fitnessProgramStrongLeanBuild, setFitnessProgramStrongLeanBuild] = useState('');
-//     const [isVisible, setIsVisible] = useState(false)
-//     const [isPatchVi, setIsPatchVi] = useState(false)
-
-//     const handleClose = () => {
-//         setIsVisible(!isVisible);
-//       }
-
-//     const handlePatchClose = () => {
-//         setIsPatchVi(!isPatchVi);
-//     }
-
-//     const handleDelete = (e) => {
-//         handleFitnessProgramDelete(id)
-//         fetch(`/fitnessPrograms/${id}`, {
-//             method: "DELETE"
-//         })
-//     }
-//     const handlePatch = (e) => {
-//         e.preventDefault()
         
 

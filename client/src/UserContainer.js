@@ -1,7 +1,6 @@
 import React from 'react';
 import User from './User';
 
-
 function UserContainer({user, handleUserPatch}) {
    
     return (

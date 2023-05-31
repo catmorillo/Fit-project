@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
 import styles from "./mystyle.module.css";
 import {Button} from 'semantic-ui-react';
 
@@ -7,10 +6,7 @@ import {Button} from 'semantic-ui-react';
 function Login({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const history = useHistory();
-
  
-
 function handleSubmit(e) {
 
     e.preventDefault();
@@ -28,7 +24,6 @@ function handleSubmit(e) {
                 r.json()
                 .then((data) => {
                     onLogin(data);
-                    // console.log(data);
                    
                 })
             }
@@ -45,6 +40,12 @@ function handleSubmit(e) {
 
  return (
     <div>
+        <div className={styles.loginContainer} style={{ backgroundColor: "lightblue" }}/>
+        <div style={{ display: 'flex', justifyContent: 'center'}}>
+        <img src="https://st3.depositphotos.com/2075965/15187/v/450/depositphotos_151875720-stock-illustration-inscription-made-of-colorful-confetti.jpg" 
+            alt="Fitness"
+        />
+        </div>
         <h1 className={styles.login}>Welcome</h1>
         <form onSubmit={handleSubmit} >
             <label>Username: </label>

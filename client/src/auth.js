@@ -1,14 +1,11 @@
 import {useState} from 'react'
-// import NavButton from './NavButton'
 
 export const Signup = () => {
     const [form, setForm] = useState ({})
-
     const updateForm = ({target: {name, value}}) => {
 
         setForm( form => ({...form, [name]: value}))
-    }
-    
+    }    
     return (
        <> 
         <h1>sign up</h1>

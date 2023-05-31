@@ -9,22 +9,6 @@ import FitnessProgramContainer from './FitnessProgramContainer';
 import UserFitnessProgramContainer from './UserFitnessProgramContainer';
 import Login from './Login';
 import Signup from './Signup';
-import User from './User';
-// import { Button } from '@mui/material'; 
-// import Logout from './Logout';
-// const UserContext = React.createContext();
-
-// const UserProvider =({ children }) => {
-//   const [user, setUser] = useState(null);
-  
-
-//   return(
-//     <UserContext.Provider value={{ user, setUser}}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,8 +17,6 @@ function App() {
   const [signUp, setSignUp] = useState([]);
   const history = useHistory();
   
-
-
   useEffect(() => {
     fetch('/check_session')
     .then((response) => response.json())
@@ -49,14 +31,6 @@ function App() {
       console.error(error);
   });
 }, []);
-
-// useEffect(() => {
-//   fetch('/signUp')
-//   .then((r) => r.json())
-//   .then(setSignUp)
-//       // history.push('/fitnessProgram')
-// },[]);
-
 
   const handleLogout = () => {
     localStorage.clear();
@@ -84,7 +58,7 @@ function App() {
   }
   
   const handleUserPatch = (updatedUser) => {   
-    setUser (user.map(user => {
+    setUser ((user => {
       if (user.id === updatedUser.id) {
         return {...updatedUser};
       } else {
@@ -95,12 +69,12 @@ function App() {
 
   return (
   <div>
-    {/* <Button>Click me </Button> */}
     <NavBar/> 
     <Switch>
       <Route exact path='/user'>
-        <UserContainer user={user}/>
-        {/* <User addUser = {addUserState} />  */}
+        <UserContainer user={user}
+        handleUserPatch={handleUserPatch}
+        /> 
       </Route>
       <Route exact path='/userFitnessProgram'>
         <UserFitnessProgramContainer 
@@ -117,8 +91,6 @@ function App() {
         <Signup signUp={signUp} />
        </Route>
       </Switch>
- 
-      {/* {user && <button onClick={handleLogout}>Logout</button>}     */}
     </div>
     );
 }

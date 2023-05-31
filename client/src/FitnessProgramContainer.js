@@ -3,8 +3,7 @@ import React, {useEffect, useState} from 'react';
 
 function FitnessProgramContainer({fitnessProgram}) {
     const [fitnessProgramsList, setFitnessProgramsList] = useState([]);
-    // const [userFitnessProgramsList, setUserFitnessProgramsList] = useState([]);
-
+    
     useEffect(() => {
     fetch('/fitness_programs')
     .then(r => r.json())
@@ -17,7 +16,7 @@ function FitnessProgramContainer({fitnessProgram}) {
              {...program}                               
         />
     })  
-    
+   
     return(                
         <div style={{backgroundColor: "lightpink", textAlign: "center"}}>           
             <h1> Packages for Exercise Programs</h1>

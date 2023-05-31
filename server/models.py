@@ -4,18 +4,15 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from config import db, bcrypt
 
-
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False) 
-    # age = db.Column(db.Integer)
     _password_hash = db.Column(db.String(50), nullable = False)
     email = db.Column(db.String(50), unique=True, nullable = False)
     # user_fitness_programs = db.relationship("UserFitnessProgram", backref="user")
     # assoc = association_proxy("user_fitness_programs", "fitness_program")
     # serialize_rules = ('userFitnessProgram.user',) 
-
 
     def __repr__(self):
         return f'User {self.username}, ID {self.id}'
@@ -41,7 +38,6 @@ class User(db.Model, SerializerMixin):
         else: 
             return username_input 
 
-#user_id and fitness_program_id/ Foreign Key
 class UserFitnessProgram(db.Model, SerializerMixin):
     __tablename__="user_fitness_programs"
     id = db.Column(db.Integer, primary_key=True)
@@ -61,10 +57,10 @@ class FitnessProgram(db.Model, SerializerMixin):
     difficulty = db.Column(db.String(50), nullable=False)
     gym_frequency = db.Column(db.String(50), nullable=False)
     training_split = db.Column(db.String(50), nullable=False)
-
+    serialize_rules = ('-user_fitness_programs.fitness_program',)
     # user_fitness_programs = db.relationship("UserFitnessProgram", backref="fitness_program")
     # assoc = association_proxy("user_fitness_programs", "user" )
-    serialize_rules = ('-user_fitness_programs.fitness_program',)
+   
 
 
 
