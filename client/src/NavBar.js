@@ -16,7 +16,7 @@ function NavBar({onLogout}) {
                   <div className="flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
                         <div className="text-lg font-Helvetica-BoldOblique leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
                         <h1>Get Fit To Flex</h1> 
-                        <p style={{backgroundColor: "lightpink", textAlign: "center"}} />
+                        <p style={{backgroundColor: "black", textAlign: "center"}} />
                         </div>
                         <div className={styles.NavBar}>
                             <NavLink 

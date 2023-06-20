@@ -18,8 +18,8 @@ function FitnessProgramContainer({fitnessProgram}) {
     })  
    
     return(                
-        <div style={{backgroundColor: "lightpink", textAlign: "center"}}>           
-            <h1> Packages for Exercise Programs</h1>
+        <div style={{backgroundColor: "black", textAlign: "center", fontFamily: 'tilt prism, sans-serif', color: 'white'}}>           
+            <h1 style={{ color: 'purple', fonntSize: '24px' }}>Packages for Exercise Programs</h1>
             {WO}
         </div>                
     )

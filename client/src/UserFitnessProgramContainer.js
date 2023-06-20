@@ -19,8 +19,8 @@ function UserFitnessProgramContainer({userFitnessProgram}) {
     });
 
     return (
-        <div style={{backgroundColor: "lightpink", textAlign: "center"}} >
-             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMG1vdGl2YXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60" alt="Deadlift" />"
+        <div style={{backgroundColor: "black", textAlign: "center", fontFamily: 'tilt prism', color:"white"}} >
+             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMG1vdGl2YXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60" alt="Deadlift" />
             <h1>Welcome </h1>
             <h1> To Your Fitness Program</h1>
             {workout} 

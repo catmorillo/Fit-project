@@ -40,7 +40,7 @@ function handleSubmit(e) {
 
  return (
     <div>
-        <div className={styles.loginContainer} style={{ backgroundColor: "lightblue" }}/>
+        <div className={styles.loginContainer} style={{ backgroundColor: "black" }}/>
         <div style={{ display: 'flex', justifyContent: 'center'}}>
         <img src="https://st3.depositphotos.com/2075965/15187/v/450/depositphotos_151875720-stock-illustration-inscription-made-of-colorful-confetti.jpg" 
             alt="Fitness"
@@ -49,13 +49,13 @@ function handleSubmit(e) {
         <h1 className={styles.login}>Welcome</h1>
         <form onSubmit={handleSubmit} >
             <label>Username: </label>
-            <input style={{backgroundColor: "lightpink"}}
+            <input style={{backgroundColor: "purple"}}
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
             <label>Password: </label>
-            <input style={{backgroundColor: "lightpink"}}
+            <input style={{backgroundColor: "purple"}}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
