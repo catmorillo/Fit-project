@@ -27,17 +27,16 @@ function NavBar({onLogout}) {
                       </div>
                         <div className="lg:flex flex-grow items-center" id="example-navbar-warning">
                           <ul className="flex flex-col lg:flex-row list-none mr-auto">
-                            <li className="nav-item"></li>
                             <li className="nav-item">
-                              <NavLink to= '/' exact >
-                                <span className={styles.home}> HOME </span>
+                              <NavLink to= '/home' exact>
+                                <span className={styles.home}> Home </span>
                               </NavLink> 
                             </li>
-                            <li className="nav-item">
-                              <NavLink to= '/home' exact >
+                            {/* <li className="nav-item">
+                              <NavLink to= '/' exact >
                                 <span className={styles.link}></span>
                               </NavLink> 
-                            </li>
+                            </li> */}
 
                             <li className="nav-item">
                               <NavLink to='/login' exact className="text-white font-bold">

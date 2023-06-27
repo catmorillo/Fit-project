@@ -1,4 +1,3 @@
-// import UserFitnessProgram from './userFitnessProgram';
 import React from 'react'; 
 import NavBar from './NavBar'
 
@@ -97,40 +96,5 @@ function App() {
 
 export default App;
 
-  
-      
-      //   useEffect(() => {
-      //     fetch("/check_session").then((response) => {
-      //       if (response.ok) {
-      //         response.json().then((user) => setUser(user));
-      //       }
-      //     });
-      //   }, []);
-      
-      //   if (user) {
-      //     return <h2>Welcome, {user.username}!</h2>;
-      //   } else {
-      //     return <Login onLogin={setUser} />;
-      //   }
-      // }
-
-
-
-
-    //   const handleLogout = () =>  {
-    //     localStorage.removeItem('accessToken');
-    //     onLogout();
-    //     // history.push('/login');
-    // };
-    //     return (
-    //     <div> 
-    
-    
-    
-    //         <h1>Logout</h1>
-    //         <button onClick={handleLogout}>Logout</button>    
-    //     </div>
-    //     );
-    // }
 
 
